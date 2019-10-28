@@ -1,0 +1,36 @@
+# Google Travel Time
+  - platform: google_travel_time
+    name: Thanh's Home Time
+    api_key: !secret google_map_api_key
+    origin: device_tracker.life360_trinh_tien_thanh
+    destination: zone.home
+    options:
+      mode: driving
+      language: vi
+
+  - platform: google_travel_time
+    name: Thanh's Work Time
+    api_key: !secret google_map_api_key
+    origin: device_tracker.life360_trinh_tien_thanh
+    destination: zone.vosco
+    options:
+      mode: driving
+      language: vi
+
+  - platform: google_travel_time
+    name: Anh's Home Time
+    api_key: !secret google_map_api_key
+    origin: device_tracker.life360_ngo_ngoc_anh
+    destination: zone.home
+    options:
+      mode: driving
+      language: vi
+
+  - platform: google_travel_time
+    name: Anh's Work Time
+    api_key: !secret google_map_api_key
+    origin: device_tracker.life360_ngo_ngoc_anh
+    destination: zone.kien_long_bank
+    options:
+      mode: driving
+      language: vi

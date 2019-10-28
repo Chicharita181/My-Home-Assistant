@@ -1,0 +1,68 @@
+### TURN OFF HITACHI FAN NIGHT MODE ###
+- id: turn_off_hitachi_fan_night_mode
+  alias: Turn Off Hitachi Night Mode
+  trigger:
+  - entity_id: switch.hitachi_fan_night_mode
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBIAAABKpQUERM3ExEUERMSExETExI3EzcTERQRExEUERM3ExITERQ2FDYUNhQREzcVDxQRExITERQRExEUNhQREzcTNxU1FQANBQ==
+
+### TURN ON HITACHI FAN NIGHT MODE 10H ###
+- id: turn_on_hitachi_fan_night_mode_10h
+  alias: Turn On Hitachi Night Mode 10h
+  trigger:
+  - entity_id: switch.hitachi_fan_night_mode_10h
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBIAAABKpQUERM3ExEUERMSExETExI3EzcTERQRExEUERM3ExITERQ2FDYUNhQREzcVDxQRExITERQRExEUNhQREzcTNxU1FQANBQ==
+
+### TURN OFF HITACHI FAN NIGHT MODE/NIGHT MODE 10H WHEN HITACHI FAN OFF ###
+- id: turn_off_hitachi_fan_night_mode_when_fan_off
+  alias: Turn Off Hitachi Fan Night Mode when fan off
+  trigger:
+  - entity_id: fan.bedroom_fan
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  action:
+  - service: switch.turn_off
+    entity_id: switch.hitachi_fan_night_mode_10h
+  - service: switch.turn_off
+    entity_id: switch.hitachi_fan_night_mode
+
+### SET HITACHI FAN SPEED ###
+- id: set_hitachi_fan_set_speed
+  alias: Set Hitachi Fan Set Speed
+  trigger:
+  - entity_id: input_select.hitachi_fan_speed
+    platform: state
+  condition:
+  - condition: state
+    entity_id: fan.bedroom_fan
+    state: 'on'
+  action:
+  - service_template: >-
+      {% if is_state('input_select.hitachi_fan_speed', '1') %}
+        script.hitachi_fan_1
+      {% elif is_state('input_select.hitachi_fan_speed', '2') %}
+        script.hitachi_fan_2
+      {% elif is_state('input_select.hitachi_fan_speed', '3') %}
+        script.hitachi_fan_3
+      {% elif is_state('input_select.hitachi_fan_speed', '4') %}
+        script.hitachi_fan_4
+      {% endif %}

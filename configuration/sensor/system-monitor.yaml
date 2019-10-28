@@ -1,0 +1,19 @@
+  # System Monitor (Scan HA resource usage)
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: memory_use_percent
+      - type: swap_use_percent
+      - type: processor_use
+      - type: last_boot
+      - type: process
+  - platform: cpuspeed
+
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone2/temp"
+    # If errors occur, make sure configuration file is encoded as UTF-8
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'

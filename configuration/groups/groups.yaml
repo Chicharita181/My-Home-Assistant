@@ -1,0 +1,36 @@
+#Lights
+living_room_lights:
+  name: Living Room Lights
+  entities:
+    - switch.living_room_ceiling_light
+    - switch.living_room_led_light
+    - switch.living_room_wall_light_1
+    - light.desk_lamp
+    - light.gateway_light_04cf8c91346e
+bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - switch.bedroom_ceiling_light
+    - switch.bedroom_led_light
+    - switch.bedroom_wall_light_1
+    - switch.bedroom_wall_light_2
+    - light.bedside_lamp
+    - light.gateway_light_7811dcdefc7f
+outside_lights:
+  name: Outside Lights
+  entities:
+    - switch.gate_light
+    - switch.balcony_light
+
+#Themes
+theme_selector:
+  entities:
+    - automation.set_theme_light_at_startup
+    - automation.set_theme_dark_at_startup
+
+#Device
+device_status:
+  name: Status and Location
+  entities:
+    - person.ngo_ngoc_anh
+    - person.trinh_tien_thanh

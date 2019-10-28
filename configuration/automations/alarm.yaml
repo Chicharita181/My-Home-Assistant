@@ -1,0 +1,274 @@
+# Alarm Automations
+
+##################################
+### MANUAL ALARM PANEL      ######   
+##################################
+
+# ALARM FOR AWAY
+- alias: Alarm Away
+  initial_state: 'true'
+  hide_entity: True
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d00023db50c
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d0002760432
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d0002732c91
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d000275c945
+    platform: state
+    to: 'on'
+  condition:
+  - entity_id: alarm_control_panel.home_alarm
+    state: 'armed_away'
+    condition: state
+  action:
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm
+
+
+# ALARM FOR AT NIGHT
+- alias: Alarm Night
+  initial_state: 'true'
+  hide_entity: True
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d00023db50c
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d0002760432
+    platform: state
+    to: 'on'
+  condition:
+  - entity_id: alarm_control_panel.home_alarm
+    state: 'armed_night'
+    condition: state
+  action:
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm
+
+
+################################################################
+### ALARM TRIGGERS                                             #
+################################################################
+- alias: Triggered Flash
+  initial_state: 'true'
+  hide_entity: True
+  trigger:
+  - entity_id: alarm_control_panel.home_alarm
+    platform: state
+    to: 'triggered'
+  action:
+  - service: script.turn_on
+    entity_id: script.xiaomi_alarm_play_ringtone
+  - service: script.turn_on
+    entity_id: script.google_home_alarm
+  - service: light.turn_on
+    entity_id: light.desk_lamp
+  - delay: 00:00:03
+  - service: yeelight.set_mode
+    entity_id: light.desk_lamp
+    data:
+      mode: color_flow
+
+################################################################
+### ALARM DISARMED                                             #
+################################################################
+- alias: Disarmed Off
+  initial_state: 'true'
+  hide_entity: True
+  trigger:
+  - entity_id: alarm_control_panel.home_alarm
+    platform: state
+    to: 'disarmed'
+  action:
+  - service: script.turn_off
+    entity_id: script.xiaomi_alarm_play_ringtone
+  - service: script.turn_off
+    entity_id: script.xiaomi_alarm_play_ringtone_loop
+  - service: script.turn_off
+    entity_id: script.google_home_alarm
+  - service: script.turn_off
+    entity_id: script.google_home_alarm_loop
+  - service: light.turn_off
+    entity_id: light.desk_lamp
+################################################################
+### ALARM NOTIFY                                               #
+################################################################
+- alias: Alarm Alert
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'triggered'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME ALARM]*'
+      message: 'ALARM ALARM ! The Alarm has sounded! ALARM ALARM!'
+
+- alias: Alarm Away Notification
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'armed_away'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME ALARM]*'
+      message: 'ALARM ALARM ! The Alarm is enabled for Away!'
+
+- alias: Alarm Home Notification
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'armed_home'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME ALARM]*'
+      message: 'ALARM ALARM ! The Alarm is on for Home!'
+
+- alias: Alarm Night Notification
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'armed_night'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME ALARM]*'
+      message: 'ALARM ALARM ! The Alarm is switched on for the Night!'
+
+- alias: Alarm Disarm Notification
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'disarmed'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME ALARM]*'
+      message: 'ALARM ALARM ! The Alarm is switched off!'
+
+# Alarm Notifications/Automatic Disarm
+- alias: Alarm Disarm Thanh Away
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: person.trinh_tien_thanh
+    to: 'home'
+    for:
+      seconds: 5
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_away'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control
+
+- alias: Alarm Disarm Thanh Home
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: person.trinh_tien_thanh
+    to: 'home'
+    for:
+      seconds: 5
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_home'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control
+
+- alias: Alarm Disarm Anh Away
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.anhs_iphone
+    to: 'home'
+    for:
+      seconds: 15
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_away'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control
+
+- alias: Alarm Disarm Anh Home
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.anhs_iphone
+    to: 'home'
+    for:
+      seconds: 15
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_home'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control
+
+- alias: Alarm Activation Alert
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: group.device_status
+    from: 'home'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: 'disarmed'
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: 'armed_home'
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control
+
+- alias: Alarm Disarm Sunrise
+  initial_state: 'true'
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: '00:30:00'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_night'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.home_alarm
+        code: !secret alarm_control

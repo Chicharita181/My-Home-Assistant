@@ -1,0 +1,75 @@
+########### XIAOMI RICE COOKER #########################
+########################################################
+- alias: rice_cooker_start
+  hide_entity: True
+  trigger:
+  - entity_id: input_boolean.rice_cooker
+    platform: state
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: '{{ not is_state(''input_select.rice_cooker_menu'', ''Select'') }}'
+  action:
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('input_select.rice_cooker_menu', 'Rice') %}
+          script.cooker_rice
+        {% elif is_state('input_select.rice_cooker_menu', 'Quick Rice') %}
+          script.cooker_quick_rice
+        {% elif is_state('input_select.rice_cooker_menu', 'Porridge') %}
+          script.cooker_porridge
+        {% elif is_state('input_select.rice_cooker_menu', 'Warm Up Rice') %}
+          script.cooker_warm_up_rice
+        {% elif is_state('input_select.rice_cooker_menu', 'Cake') %}
+          script.cooker_cake
+        {% elif is_state('input_select.rice_cooker_menu', 'Yoghurt') %}
+          script.cooker_yoghurt
+        {% elif is_state('input_select.rice_cooker_menu', 'Cooking rice at 90 degrees') %}
+          script.cooker_cooking_rice_at_90_degrees
+        {% elif is_state('input_select.rice_cooker_menu', 'Steaming') %}
+          script.cooker_steaming
+        {% elif is_state('input_select.rice_cooker_menu', 'Sweet Rice') %}
+          script.cooker_sweet_rice
+        {% endif %}
+- alias: rice_cooker_stop
+  hide_entity: True
+  trigger:
+  - entity_id: sensor.rice_cooker_current_menu
+    platform: state
+    to: 'Stop'
+  condition:
+  - condition: state
+    entity_id: input_boolean.rice_cooker
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.rice_cooker
+  - service: input_select.select_option
+    entity_id: input_select.rice_cooker_menu
+    data_template:
+      option: 'Select'
+- alias: auto_change_rice_cooker_mode
+  hide_entity: True
+  trigger:
+  - entity_id: sensor.xiaomi_cooker_mode
+    platform: state
+    from: 'Waiting'
+  condition:
+  - condition: state
+    entity_id: input_boolean.rice_cooker
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.rice_cooker
+
+- alias: Rice Cooker Notification
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: sensor.rice_cooker_current_mode
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[RICE COOKER]*'
+      message: 'Mode change to {{trigger.to_state.state}}'

@@ -1,0 +1,97 @@
+### AUTO TURN OFF BEDSIDE LAMP WHEN HASS START ###
+- id: auto_turn_off_bslamp_when_hass_start
+  alias: Auto turn off bslamp when hass start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  - condition: state
+    entity_id: light.bedside_lamp
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: light.bedside_lamp
+  - service: notify.telegram_message
+    data:
+      title: '*[System Notify]*'
+      message: 'Bedside Lamp was off.'
+
+### AUTO TURN OFF DESK LAMP WHEN HASS START ###
+- id: auto_turn_off_yeelight_when_hass_start
+  alias: Auto turn off yeelight when hass start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: light.desk_lamp
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: light.desk_lamp
+  - service: notify.telegram_message
+    data:
+      title: '*[System Notify]*'
+      message: 'Deslamp was off.'
+
+
+
+### AUTO TURN OFF BEDSIDE LAMP WHEN SUNRISE ###
+- id: turn_off_bedside_lamp_when_sunrise
+  alias: turn off bedside lamp when sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+  condition:
+  - condition: state
+    entity_id: light.bedside_lamp
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: light.bedside_lamp
+
+### SYNC LIGHTS STATES ###
+- id: sync_gate_light
+  alias: Sync Gate Light
+  trigger:
+  - platform: state
+    entity_id: switch.gate_light, switch.gate_light_s
+  condition: []
+  action:
+  - delay:
+      milliseconds: 5
+  - service_template: switch.turn_{{trigger.to_state.state}}
+    data:
+      entity_id:
+      - switch.gate_light
+      - switch.gate_light_s
+- id: sync_balcony_light
+  alias: Sync Balcony Light
+  trigger:
+  - platform: state
+    entity_id: switch.balcony_light, switch.balcony_light_s
+  condition: []
+  action:
+  - delay:
+      milliseconds: 5
+  - service_template: switch.turn_{{trigger.to_state.state}}
+    data:
+      entity_id:
+      - switch.balcony_light
+      - switch.balcony_light_s
+- id: sync_bedroom_all_lights
+  alias: Sync Bedroom All Lights
+  trigger:
+  - platform: state
+    entity_id: switch.bedroom_all_light
+  condition: []
+  action:
+  - service_template: switch.turn_{{trigger.to_state.state}}
+    data:
+      entity_id:
+      - switch.bedroom_ceiling_light
+      - switch.bedroom_wall_light_1
+      - switch.bedroom_wall_light_2

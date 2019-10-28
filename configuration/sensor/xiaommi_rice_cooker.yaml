@@ -1,0 +1,56 @@
+- platform: template
+  sensors:
+# XIAOMI RICE COOKER #
+    rice_cooker_current_mode:
+      friendly_name: "Rice Cooker Current Mode"
+      value_template: >-
+        {% if is_state('sensor.xiaomi_cooker_mode', 'Waiting') %}
+          Standby Mode
+        {% elif is_state('sensor.xiaomi_cooker_mode', 'Running') %}
+          Cooking
+        {% elif is_state('sensor.xiaomi_cooker_mode', 'AutoKeepWarm') %}
+          Keep warm
+        {% else %}
+          -
+        {% endif %}
+      icon_template: mdi:xbox-controller-menu
+    rice_cooker_current_stage_name:
+      friendly_name: "Rice Cooker Current Stage Name"
+      value_template: >-
+        {% if is_state('sensor.xiaomi_cooker_stage_name', 'unknown') %}
+          Standby state
+        {% elif is_state('sensor.xiaomi_cooker_stage_name', 'unknown stage') %}
+          Standby state
+        {% else %}
+          {{ states('sensor.xiaomi_cooker_stage_name') }}
+        {% endif %}
+      icon_template: mdi:step-forward-2
+    rice_cooker_current_menu:
+      friendly_name: "Rice Cooker Menu"
+      value_template: >-
+        {% if is_state('sensor.rice_cooker_current_mode', 'Standby Mode') %}
+          Stop
+        {% elif is_state('sensor.rice_cooker_current_mode', 'Keep warm') %}
+          Stop
+        {% elif is_state('sensor.xiaomi_cooker_menu', '1') %}
+          Rice
+        {% elif is_state('sensor.xiaomi_cooker_menu', '2') %}
+          Quick Rice
+        {% elif is_state('sensor.xiaomi_cooker_menu', '3') %}
+          Porridge
+        {% elif is_state('sensor.xiaomi_cooker_menu', '4') %}
+          Warm Up Rice
+        {% elif is_state('sensor.xiaomi_cooker_menu', '256') %}
+          Cake
+        {% elif is_state('sensor.xiaomi_cooker_menu', '257') %}
+          Yoghurt
+        {% elif is_state('sensor.xiaomi_cooker_menu', '258') %}
+          Cooking Rice at 90 degrees
+        {% elif is_state('sensor.xiaomi_cooker_menu', '259') %}
+          Steaming
+        {% elif is_state('sensor.xiaomi_cooker_menu', '260') %}
+          Sweet Rice
+        {% else %}
+          Favorite
+        {% endif %}
+      icon_template: mdi:stop-circle-outline

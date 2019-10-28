@@ -1,0 +1,23 @@
+# Weather
+- platform: yr
+- platform: moon
+
+- platform: season
+  type: astronomical
+
+# Weather Sensors
+- platform: darksky
+  api_key: !secret darksky
+  monitored_conditions:
+    - icon
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - apparent_temperature
+    - wind_speed
+    - wind_bearing
+    - uv_index
+    - daily_summary
+    - pressure

@@ -1,0 +1,123 @@
+
+# HITACHI FAN #
+hitachi_fan_on:
+  alias: Hitachi Fan on
+  sequence:
+  - service: switch.turn_on
+    entity_id: switch.mi_plug_2
+  - delay:
+      milliseconds: 15
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBIAAABKpQTERQ2ExITEhMRExITERQ2EzcTEhMRExISEhQ2FBETERQ2FDYUNhQ2FDYUERISExITERQRExETEhMSEzcTNhQ2FAANBQ==
+  - delay:
+      milliseconds: 5
+  - service_template: >
+      {% if is_state('input_select.hitachi_fan_speed', '1') %}
+        script.hitachi_fan_1
+      {% elif is_state('input_select.hitachi_fan_speed', '2') %}
+        script.hitachi_fan_2
+      {% elif is_state('input_select.hitachi_fan_speed', '3') %}
+        script.hitachi_fan_3
+      {% elif is_state('input_select.hitachi_fan_speed', '4') %}
+        script.hitachi_fan_4
+      {% endif %}
+hitachi_fan_off:
+  alias: Hitachi Fan off
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBIAAABKpQTERQ2ExITEhMRExITERQ2EzcTEhMRExISEhQ2FBETERQ2FDYUNhQ2FDYUERISExITERQRExETEhMSEzcTNhQ2FAANBQ==
+  - delay:
+      milliseconds: 10
+  - service: switch.turn_off
+    entity_id: switch.mi_plug_2
+hitachi_fan_1:
+  alias: Hitachi Fan 1
+  sequence:
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+hitachi_fan_2:
+  alias: Hitachi Fan 2
+  sequence:
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_down
+  - delay:
+      milliseconds: 7
+  - service: script.hitachi_fan_speed_up
+hitachi_fan_4:
+  alias: Hitachi Fan 4
+  sequence:
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+hitachi_fan_3:
+  alias: Hitachi Fan 3
+  sequence:
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+  - delay:
+      milliseconds: 5
+  - service: script.hitachi_fan_speed_up
+  - delay:
+      milliseconds: 7
+  - service: script.hitachi_fan_speed_down
+hitachi_fan_speed:
+  alias: Hitachi Fan Speed
+  sequence:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.hitachi_fan_speed
+      option: '{{ speed }}'
+hitachi_fan_speed_up:
+  alias: Hitachi Fan Speed Up
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBQAAABKpMUERM3ExETEhMSEhITEhI4EzYUERMSExETEhM3EhITEhM3EzcTERM3EzcTEhMRExITERQREzcTERQREzcTNxM3EgAFzQABKkkTAA0FAAAAAAAAAAA=
+hitachi_fan_speed_down:
+  alias: Hitachi Fan Speed Down
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBQAAABKpQTEhI4ExEUERMRFBESExI3EzcTEhMSEhITEhI4ExEUERI4ExETEhISFBESExISExISEhM3EzcTNxM3EzcTNxM3EwAFzQABKUoTAA0FAAAAAAAAAAA=
+hitachi_fan_set_oscillating:
+  alias: Hitachi Fan Set Oscillating
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBQAAABKZUTERM3ExISEhMSExITERM3EjgSExMRExISEhM3FBESEhM3EzcUNhM3FBETERQRExITERMSExETEhI4EzcTNxI4EwAFzQABKkkTAA0FAAAAAAAAAAA=

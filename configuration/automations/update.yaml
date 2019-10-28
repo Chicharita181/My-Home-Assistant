@@ -1,0 +1,12 @@
+# Update Notifications
+
+- alias: 'Update Available Notifications'
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[Home Assistant Update]*'
+      message: 'An update for Home Assistant has been released. HA Version {{ states.updater.updater.state }}.'

@@ -1,0 +1,37 @@
+hitachi_fan_speed:
+  name: Hitachi Fan Speed
+  options:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+  icon: mdi:speedometer
+kangaroo_fan_speed:
+  name: Kangaroo Fan Speed
+  options:
+    - 'low'
+    - 'medium'
+    - 'high'
+  icon: mdi:speedometer
+hitachi_fan_oscillating:
+  name: Hitachi Fan Oscillating
+  options:
+    - true
+    - false
+# Xiaomi Rice Cooker
+rice_cooker_menu:
+  name: "Menu"
+  options:
+    - 'Select'
+    - 'Rice'
+    - 'Quick Rice'
+    - 'Porridge'
+    - 'Warm Up Rice'
+    - 'Cake'
+    - 'Yoghurt'
+    - 'Cooking Rice at 90 degrees'
+    - 'Steaming'
+    - 'Sweet Rice'
+    - 'Stop'
+  initial: Select
+  icon: mdi:format-list-checkbox

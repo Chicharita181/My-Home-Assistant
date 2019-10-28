@@ -1,0 +1,12 @@
+mitsubishi_fan_state:
+  name: "Mitsubishi Fan state"
+kangaroo_fan_state:
+  name: "Kangaroo Fan state"
+hitachi_fan_state:
+  name: "Hitachi Fan state"
+daikin_ac_timer:
+  name: "Daikin AC Timer"
+rice_cooker:
+  name: "Rice Cooker"
+  icon: mdi:power
+themes:

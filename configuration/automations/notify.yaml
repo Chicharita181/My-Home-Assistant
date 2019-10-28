@@ -1,0 +1,87 @@
+### NOTIFY 6.30 AM DAILY ###
+- id: notify_6_30_AM
+  alias: Notify 6h30 AM
+  trigger:
+  - at: 06:29:20
+    platform: time
+  condition: []
+  action:
+  - service: media_player.play_media
+    entity_id: media_player.living_room, media_player.bedroom
+    data:
+      media_content_id: https://thanhtt.duckdns.org/local/Music/theducbuoisang.mp3
+      media_content_type: audio/mp3
+  - delay: 00:00:40
+  - service: tts.google_say
+    entity_id: media_player.living_room, media_player.bedroom
+    data_template:
+      message: ' Xin thông báo, bây giờ là sáu giờ ba mươi phút'
+  - delay: 00:00:10
+  - service: script.turn_on
+    entity_id: script.weather_today
+
+### NOTIFY DAILY ###
+- id: notify_daily
+  alias: Notify Daily
+  trigger:
+    platform: time_pattern
+    minutes: 0
+  condition:
+    condition: or
+    conditions:
+    - condition: time
+      after: '06:59:00'
+      before: '12:01:00'
+    - condition: time
+      after: '13:59:00'
+      before: '21:01:00'
+  action:
+  - service: media_player.play_media
+    entity_id: media_player.living_room
+    data:
+      media_content_id: https://thanhtt.duckdns.org/local/Music/ring.mp3
+      media_content_type: audio/mp3
+  - delay: 00:00:10
+  - service: tts.google_say
+    entity_id: media_player.living_room
+    data_template:
+      message: ' Xin thông báo, bây giờ là {{ now().hour }} giờ'
+
+### SEND NOTIFICATION WHEN GATE CLOSE ###
+- id: send_notification_when_gate_close
+  alias: Send notification when gate close
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME SECURITY]*'
+      message: 'The gate is closed.'
+
+### NOTIFY ANH'S LOCATION ###
+- id: notify_anh_location_enter
+  alias: Notify Anh Location Enter
+  trigger:
+    platform: state
+    entity_id: device_tracker.anhs_iphone, device_tracker.life360_ngo_ngoc_anh
+    from: not_home
+  action:
+  - service: notify.telegram_message
+    data_template:
+      title: '*[ANH LOCATION UPDATE]*'
+      message: 'ÁNH just came {{ trigger.to_state.state }}.'
+- id: notify_anh_location_leave
+  alias: Notify Anh Location Leave
+  trigger:
+    platform: state
+    entity_id: device_tracker.anhs_iphone, device_tracker.life360_ngo_ngoc_anh
+    to: not_home
+  action:
+  - service: notify.telegram_message
+    data_template:
+      title: '*[ANH LOCATION UPDATE]*'
+      message: 'ÁNH just left {{ trigger.from_state.state }}.'

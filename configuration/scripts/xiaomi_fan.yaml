@@ -1,0 +1,16 @@
+
+# XIAOMI SMART FAN #
+xiaomi_fan_set_direction_left:
+  alias: Xiaomi Fan Set Direction Left
+  sequence:
+  - service: fan.set_direction
+    entity_id: fan.xiaomi_smart_fan
+    data:
+      direction: left
+xiaomi_fan_set_direction_right:
+  alias: Xiaomi Fan Set Direction Right
+  sequence:
+  - service: fan.set_direction
+    entity_id: fan.xiaomi_smart_fan
+    data:
+      direction: right

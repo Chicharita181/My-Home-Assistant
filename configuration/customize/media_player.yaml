@@ -1,0 +1,40 @@
+#Media Players:
+media_player.soundbar:
+  friendly_name: Living Room Soundbar
+  icon: mdi:speaker
+media_player.tivi:
+  friendly_name: Living Room TV
+  icon: mdi:television
+media_player.living_room:
+  friendly_name: Living Room Speaker
+  icon: mdi:speaker
+media_player.bedroom:
+  friendly_name: Bedroom Speaker
+  icon: mdi:speaker
+script.mute:
+  friendly_name: Mute
+  icon: mdi:volume-off
+switch.mute:
+  friendly_name: Mute
+  icon: mdi:volume-off
+script.volume_down:
+  friendly_name: Volume down
+  icon: mdi:volume-minus
+script.volume_up:
+  friendly_name: Volume up
+  icon: mdi:volume-plus
+media_player.android_tv:
+  friendly_name: Android TV
+  icon: mdi:cast
+script.soundbar_source:
+  name: Source
+  icon: mdi:login-variant
+sensor.tv_source_mibox:
+  name: Mibox
+  icon: mdi:youtube
+sensor.tv_source_live_tv:
+  name: Viettel TV
+  icon: mdi:television-box
+sensor.tv_source_play_station:
+  name: Playstation
+  icon: mdi:playstation

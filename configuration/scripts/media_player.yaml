@@ -1,0 +1,61 @@
+play_game:
+  alias: Play game
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tivi
+      source: Play_Station
+
+watch_tv:
+  alias: Watch tv
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tivi
+      source: Live_TV
+
+power_tv:
+  alias: Power TV
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCMAJSVEjcTNxM3ExISExITEhMSExI3EzcTNxITEhMSExITEhMSEhM3ExITEhMSEhMSExITEjcTEhM3EzcSOBI4EjcTNxMABgaVlBI4EjgSNxMSExITEhITEhMSOBI3EzcTEhMSExISExITEhMSOBITEhITEhMSExITEhI4EhMSOBI3EzcTNxI4EjcTAA0FAAAAAAAAAAAAAAAA
+power_soundbar:
+  alias: Power Soundbar
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgBQAJWTERAREBEQERARMRExERARERAyEDERMhExERAQERAREBEQlRAREBEREBAREBEQERAREBEQMhAyETEQERAyETEQMhAyERAREBAREDIRAA0FAAAAAAAAAAA=
+viettel_tv:
+  alias: Viettel TV
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tivi
+      source: Live_TV
+mibox:
+  alias: Mibox
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tivi
+      source: Mibox
+playstation:
+  alias: Play Station
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tivi
+      source: Play_Station
+soundbar_source:
+  alias: Soundbar Source
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCgAJSUERAREBEQERARMRExEg8REBIwETERMRExERAREBIPERARlBEQEg8REBEQETEREBIwEg8RMRIwETESDxIPETEREBExERAREBEQETESAAcelZMSDxIPERAREBExETEREBEQETERMRIwETEREBEQERAREBGUEg8REBEQERARMRIPEjASDxExETERMREQERARMREQEjASDxEQERASMBEADQUAAAAAAAAAAA==

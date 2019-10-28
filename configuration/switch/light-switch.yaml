@@ -1,0 +1,101 @@
+#bedroom-3
+- platform: mqtt
+  name: "Bedroom Ceiling Light"
+  state_topic: "stat/bedroom-3/POWER1"
+  command_topic: "cmnd/bedroom-3/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Bedroom Wall Light 1"
+  state_topic: "stat/bedroom-3/POWER2"
+  command_topic: "cmnd/bedroom-3/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Bedroom Led Light"
+  state_topic: "stat/bedroom-3/POWER3"
+  command_topic: "cmnd/bedroom-3/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+#bedroom-2
+- platform: mqtt
+  name: "Bedroom Wall Light 2"
+  state_topic: "stat/bedroom-2/POWER1"
+  command_topic: "cmnd/bedroom-2/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Bedroom All Light"
+  state_topic: "stat/bedroom-2/POWER2"
+  command_topic: "cmnd/bedroom-2/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+#living-room-3
+- platform: mqtt
+  name: "Living Room Ceiling Light"
+  state_topic: "stat/living-room-3/POWER1"
+  command_topic: "cmnd/living-room-3/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Living Room Wall Light 1"
+  state_topic: "stat/living-room-3/POWER2"
+  command_topic: "cmnd/living-room-3/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Living Room Led Light"
+  state_topic: "stat/living-room-3/POWER3"
+  command_topic: "cmnd/living-room-3/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+#gate
+- platform: mqtt
+  name: "Balcony Light (s)"
+  state_topic: "stat/gate/POWER1"
+  command_topic: "cmnd/gate/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Gate Light"
+  state_topic: "stat/gate/POWER2"
+  command_topic: "cmnd/gate/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+#balcony-2
+- platform: mqtt
+  name: "Balcony Light"
+  state_topic: "stat/balcony-2/POWER1"
+  command_topic: "cmnd/balcony-2/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Gate Light (s)"
+  state_topic: "stat/balcony-2/POWER2"
+  command_topic: "cmnd/balcony-2/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true

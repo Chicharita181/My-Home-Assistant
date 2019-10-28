@@ -1,0 +1,12 @@
+- platform: ping
+  name: Living Room TV Power
+  host: 192.168.10.167
+  scan_interval: 5
+- platform: ping
+  name: Anh's iPhone
+  host: 192.168.10.98
+  scan_interval: 5
+- platform: ping
+  name: Trinh's Mi9
+  host: 192.168.10.27
+  scan_interval: 5

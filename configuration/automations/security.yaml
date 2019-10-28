@@ -1,0 +1,82 @@
+### PLAY RINGTONE WHEN GATE OPEN ###
+- id: play_ringtone_when_gate_open
+  alias: Play ringtone when gate open
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 04:CF:8C:91:34:6E
+      ringtone_id: 10
+      ringtone_vol: 100
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 78:11:DC:DE:FC:7F
+      ringtone_id: 10
+      ringtone_vol: 100
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME SECURITY]*'
+      message: 'The gate is opened.'
+
+### TURN ON GATE LIGHT WHEN GATE OPEN ###
+- id: turn_on_gate_light_when_gate_open
+  alias: Turn on gate light when gate open
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - service: switch.turn_on
+    entity_id: switch.gate_light
+
+### TURN OFF GATE LIGHT WHEN GATE CLOSE ###
+- id: turn_off_gate_light_when_gate_close
+  alias: Turn off gate light when gate close
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0001f369e9
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: switch.gate_light
+    state: 'on'
+  action:
+  - delay: 00:01:00
+  - service: switch.turn_off
+    entity_id: switch.gate_light
+
+### PLAY RINGTONE WHEN CLICK GATE SWITCH ###
+- id: play_ringtone_when_click_gate_switch
+  alias: Play ringtone when click gate switch
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00020fef2d
+      click_type: single
+  condition: []
+  action:
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 04:CF:8C:91:34:6E
+      ringtone_id: 10
+      ringtone_vol: 100
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 78:11:DC:DE:FC:7F
+      ringtone_id: 10
+      ringtone_vol: 100
+  - service: notify.telegram_message
+    data:
+      title: '*[HOME SECURITY]*'
+      message: 'Someone just rang the doorbell.'

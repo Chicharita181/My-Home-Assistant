@@ -1,0 +1,45 @@
+- name: Home
+  latitude: 20.828504852410447
+  longitude: 106.66034490432872
+  radius: 20
+  icon: mdi:home
+- name: Vosco
+  latitude: 20.8363741
+  longitude: 106.6965678
+  radius: 100
+  icon: mdi:briefcase-outline
+- name: Kien Long Bank
+  latitude: 20.821032
+  longitude: 106.648750
+  radius: 30
+  icon: mdi:bank
+- name: Hometown
+  latitude: 20.656239
+  longitude: 106.553030
+  radius: 20
+  icon: mdi:home-circle
+- name: Anhs Hometown
+  latitude: 20.670976
+  longitude: 106.551840
+  radius: 20
+  icon: mdi:home-circle
+- name: VISM
+  latitude: 20.823288
+  longitude: 106.702443
+  radius: 50
+  icon: mdi:briefcase-outline
+- name: Great-grandfather Home
+  latitude: 20.646789
+  longitude: 106.540917
+  radius: 20
+  icon: mdi:home-circle
+- name: Hotel
+  latitude: 10.772331
+  longitude: 106.691280
+  radius: 50
+  icon: mdi:home-floor-0
+- name: School
+  latitude: 10.793807354378483
+  longitude: 106.6785804826375
+  radius: 50
+  icon: mdi:bank

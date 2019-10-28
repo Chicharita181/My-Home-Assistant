@@ -1,0 +1,21 @@
+  - platform: smartir
+    name: Tivi
+    unique_id: tivi
+    device_code: 1060
+    controller_data: 192.168.10.141
+  - platform: smartir
+    name: Soundbar
+    unique_id: soundbar
+    device_code: 1080
+    controller_data: 192.168.10.141
+  - platform: androidtv
+    host: 192.168.10.102
+    adb_server_ip: 127.0.0.1
+    name: Mibox
+    apps:
+      com.google.android.youtube.tv: "YouTube"
+  - platform: samsungtv_custom
+    host: 192.168.10.167
+    mac: E4:7D:BD:B2:CF:26
+    port: 8001
+    sourcelist: '{"PlayStation": "KEY_HDMI1", "Live_TV": "KEY_HDMI2", "Mibox": "KEY_HDMI3"}'

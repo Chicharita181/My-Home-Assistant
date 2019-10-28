@@ -1,0 +1,33 @@
+- platform: xiaomi_miio
+  host: 192.168.10.81
+  token: !secret mi_plug
+  name: "Mi Plug"
+
+- platform: xiaomi_miio
+  host: 192.168.10.127
+  token: !secret powerstrip
+  name: "power strip"
+
+- platform: broadlink_mp1
+  host: 192.168.10.111
+  mac: '78:0F:77:84:3F:DE'
+  type: mp11
+  friendly_name: 'MP1 Mibox'
+
+- platform: broadlink_mp1
+  host: 192.168.10.111
+  mac: '78:0F:77:84:3F:DE'
+  type: mp12
+  friendly_name: 'MP1 Fan'
+
+- platform: broadlink_mp1
+  host: 192.168.10.111
+  mac: '78:0F:77:84:3F:DE'
+  type: mp13
+  friendly_name: 'MP1 Tivi'
+
+- platform: broadlink_mp1
+  host: 192.168.10.111
+  mac: '78:0F:77:84:3F:DE'
+  type: mp14
+  friendly_name: 'MP1 Soundbar'

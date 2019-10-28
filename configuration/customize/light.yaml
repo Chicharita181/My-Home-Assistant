@@ -1,0 +1,20 @@
+#
+#Lights
+light.bedside_lamp:
+  friendly_name: Bedside Lamp
+  icon: mdi:lamp
+light.desk_lamp:
+  friendly_name: Desk Lamp
+  icon: mdi:desk-lamp
+light.gateway_light_7811dcdefc7f:
+  friendly_name: Bedroom Gateway
+  icon: mdi:alarm-light-outline
+light.gateway_light_04cf8c91346e:
+  friendly_name: Living Room Gateway
+  icon: mdi:alarm-light-outline
+light.living_room_lights:
+  name: "Living Room Lights"
+  icon: mdi:alarm-light-outline
+light.bedroom_lights:
+  name: "Bedoom Lights"
+  icon: mdi:alarm-light-outline

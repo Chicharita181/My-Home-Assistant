@@ -1,0 +1,77 @@
+- alias: "Power state of Living room light 3 on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/living-room-3/power1"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/living-room-3/power2"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/living-room-3/power3"
+        payload: ""
+
+- alias: "Power state of Bedroom light 3 on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/bedroom-3/power1"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/bedroom-3/power2"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/bedroom-3/power3"
+        payload: ""
+
+- alias: "Power state of Bedroom light 2 on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/bedroom-2/power1"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/bedroom-2/power2"
+        payload: ""
+
+- alias: "Power state of Gate light on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/gate/power1"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/gate/power2"
+        payload: ""
+
+- alias: "Power state of Balcony light 2 on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/balcony-2/power1"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/balcony-2/power2"
+        payload: ""

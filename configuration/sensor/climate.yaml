@@ -1,0 +1,27 @@
+- platform: template
+  sensors:
+# DAIKIN AC #
+    daikin_ac_mode:
+      friendly_name: "Daikin AC Mode"
+      value_template: >-
+        {% if is_state('climate.daikin_ac', 'off') %}
+          off
+        {% else %}
+          {{ state_attr('climate.daikin_ac', 'last_on_operation') }}
+        {% endif %}
+    daikin_ac_current_fan_mode:
+      friendly_name: "Current Fan Mode"
+      value_template: "{{ state_attr('climate.daikin_ac', 'fan_mode') }}"
+
+# LG AC #
+    lg_ac_mode:
+      friendly_name: "LG AC Mode"
+      value_template: >-
+        {% if is_state('climate.lg_ac', 'off') %}
+          off
+        {% else %}
+          {{ state_attr('climate.lg_ac', 'last_on_operation') }}
+        {% endif %}
+    lg_ac_current_fan_mode:
+      friendly_name: "Current Fan Mode"
+      value_template: "{{ state_attr('climate.lg_ac', 'fan_mode') }}"

@@ -1,0 +1,55 @@
+#
+#Mitsubishi Fans
+fan.living_room_fan:
+  friendly_name: Living Room Fan
+  icon: mdi:fan
+switch.mitsubishi_fan_natural_mode:
+  friendly_name: Mitsubishi Fan Natural Mode
+  icon: mdi:nativescript
+switch.mitsubishi_fan_swing:
+  friendly_name: Mitsubishi Fan Swing
+  icon: mdi:rotate-3d
+#
+#hitachi Fans
+fan.bedroom_fan:
+  friendly_name: Bedroom Fan
+  icon: mdi:fan
+switch.hitachi_fan_natural_mode:
+  friendly_name: Hitachi Fan Natural Mode
+  icon: mdi:nativescript
+script.hitachi_fan_speed_down:
+  friendly_name: Hitachi Fan Speed Down
+  icon: mdi:minus-circle
+script.hitachi_fan_speed_up:
+  friendly_name: Hitachi Fan Speed Up
+  icon: mdi:plus-circle
+switch.hitachi_fan_swing:
+  friendly_name: Hitachi Fan Swing
+  icon: mdi:rotate-3d
+switch.hitachi_fan_night_mode:
+  friendly_name: Hitachi Fan Night Mode
+  icon: mdi:weather-night
+switch.hitachi_fan_night_mode_10h:
+  friendly_name: Hitachi Fan Night Mode 10h
+  icon: mdi:brightness-3
+
+#
+#Xiaomi Fan
+fan.xiaomi_smart_fan:
+  friendly_name: Xiaomi Fan
+  icon: mdi:fan
+script.xiaomi_fan_oscillate_off:
+  friendly_name: Swing Off
+  icon: mdi:lock-reset
+script.xiaomi_fan_set_direction_left:
+  friendly_name: Xiaomi Fan Set Direction Left
+  icon: mdi:rotate-left
+script.xiaomi_fan_set_direction_right:
+  friendly_name: Xiaomi Fan Set Direction Right
+  icon: mdi:rotate-right
+script.xiaomi_fan_set_natural_mode_on:
+  friendly_name: Xiaomi Fan Natural Mode
+  icon: mdi:nativescript
+script.xiaomi_fan_set_natural_mode_off:
+  friendly_name: Xiaomi Fan Standard Mode
+  icon: mdi:standard-definition

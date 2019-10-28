@@ -1,0 +1,38 @@
+# Template Temperature Sensors
+- platform: template
+  sensors:
+    weathertoday:
+      friendly_name: "Thời tiết hôm nay"
+      value_template: >-
+        {% if is_state('sensor.dark_sky_icon', 'partly-cloudy-day') %}
+          Ngày trời ít mây
+        {% elif is_state('sensor.dark_sky_icon', 'clear-day') %}
+          Ngày trời trong xanh
+        {% elif is_state('sensor.dark_sky_icon', 'clear-night') %}
+          Đêm trời đẹp
+        {% elif is_state('sensor.dark_sky_icon', 'rain') %}
+          Trời mưa
+        {% elif is_state('sensor.dark_sky_icon', 'wind') %}
+          Gió nhiều
+        {% elif is_state('sensor.dark_sky_icon', 'cloudy') %}
+          Trời nhiều mây
+        {% elif is_state('sensor.dark_sky_icon', 'partly-cloudy-night') %}
+          Đêm trời nhiều mây
+        {% elif is_state('sensor.dark_sky_icon', 'fog') %}
+          Sương mù
+        {% elif is_state('sensor.dark_sky_nearest_storm_distance', 'unknown') %}
+          Không có cơn bão nào
+        {% else %}
+          ...
+        {% endif %}
+
+# - platform: mitemp_bt
+#  mac: '4C:65:A8:D4:58:76'
+#  name: Living Room Temp
+#  force_update: true
+#  median: 1
+#  timeout: 30
+#  monitored_conditions:
+#    - temperature
+#    - humidity
+#    - battery

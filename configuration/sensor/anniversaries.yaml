@@ -1,0 +1,12 @@
+  - platform: anniversaries
+    name: Thanh's Birthday
+    date: '1992-08-18'
+  - platform: anniversaries
+    name: Anh's Birthday
+    date: '1994-06-02'
+  - platform: anniversaries
+    name: Minh Tu's Birthday
+    date: '2018-05-06'
+  - platform: anniversaries
+    name: Wedding Anniversary
+    date: '2017-11-26'

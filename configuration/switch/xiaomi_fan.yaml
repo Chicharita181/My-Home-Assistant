@@ -1,0 +1,52 @@
+- platform: template
+  switches:
+    xiaomi_fan_oscillate:
+      friendly_name: Xiaomi Fan Oscillate
+      value_template: "{{ is_state_attr('fan.xiaomi_smart_fan', 'oscillate', true) }}"
+      turn_on:
+        service: fan.oscillate
+        entity_id: fan.xiaomi_smart_fan
+        data:
+          oscillating: true
+      turn_off:
+        service: fan.oscillate
+        entity_id: fan.xiaomi_smart_fan
+        data:
+          oscillating: false
+      icon_template: "mdi:autorenew"
+    xiaomi_fan_buzzer:
+      friendly_name: Xiaomi Fan Buzzer
+      value_template: "{{ is_state_attr('fan.xiaomi_smart_fan', 'buzzer', true) }}"
+      turn_on:
+        service: fan.xiaomi_miio_set_buzzer_on
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      turn_off:
+        service: fan.xiaomi_miio_set_buzzer_off
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      icon_template: "mdi:music-circle-outline"
+    xiaomi_fan_child_lock:
+      friendly_name: Xiaomi Fan Child Lock
+      value_template: "{{ is_state_attr('fan.xiaomi_smart_fan', 'child_lock', true) }}"
+      turn_on:
+        service: fan.xiaomi_miio_set_child_lock_on
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      turn_off:
+        service: fan.xiaomi_miio_set_child_lock_off
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      icon_template: "mdi:shield-account"
+    xiaomi_fan_natural_mode:
+      friendly_name: Xiaomi Fan Natural Mode
+      value_template: "{{ is_state('sensor.xiaomi_fan_natural_mode', 'on') }}"
+      turn_on:
+        service: fan.xiaomi_miio_set_natural_mode_on
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      turn_off:
+        service: fan.xiaomi_miio_set_natural_mode_off
+        data:
+          entity_id: fan.xiaomi_smart_fan
+      icon_template: "mdi:nativescript"

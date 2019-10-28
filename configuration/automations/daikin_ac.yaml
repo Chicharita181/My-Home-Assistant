@@ -1,0 +1,104 @@
+### SET DAIKIN TIMER ###
+- id: daikin_ac_set_timer
+  alias: Daikin AC Set Timer
+  trigger:
+  - entity_id: input_boolean.daikin_ac_timer
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: '{{ not is_state(''climate.daikin_ac'', ''off'') }}'
+  action:
+  - service: notify.telegram_message
+    data:
+      title: '*[TURN ON DAIKIN AC TIMER]*'
+      message: Daikin AC will turn off after {{ states('input_number.daikin_ac_select_timer')|int }} hours.
+  - delay:
+      hours: '{{ states(''input_number.daikin_ac_select_timer'')|int }}'
+  - service: climate.turn_off
+    entity_id: climate.daikin_ac
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.daikin_ac_timer
+  - service: notify.telegram_message
+    data:
+      title: '*[DAIKIN AC WAS OFF]*'
+      message: 'Time: {{ states(''sensor.time'') }}. Date: {{ states(''sensor.date'') }}.'
+
+### SET MODE WHEN DAIKIN AC TURN ON ###
+- alias: Set Mode when turn on Daikin AC
+  trigger:
+  - entity_id: climate.daikin_ac
+    from: 'off'
+    platform: state
+    to: cool
+  condition: []
+  action:
+  - delay:
+      seconds: 3
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.daikin_ac
+      temperature: 24
+  - delay:
+      seconds: 3
+  - service: climate.set_fan_mode
+    data:
+      entity_id: climate.daikin_ac
+      fan_mode: mediumHigh
+
+### CLICK RIGHT BUTTON TO TURN ON DAIKIN AC ###
+- alias: Click Righ button to turn on Daikin AC
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000255ea52
+      click_type: single
+  condition:
+  - condition: state
+    entity_id: climate.daikin_ac
+    state: 'off'
+  action:
+  - service: climate.turn_on
+    entity_id: climate.daikin_ac
+
+### CLICK RIGHT BUTTON TO TURN OFF DAIKIN AC ###
+- alias: Click Righ button to turn off Daikin AC
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000255ea52
+      click_type: single
+  condition:
+  - condition: template
+    value_template: '{{ not is_state(''climate.daikin_ac'', ''off'') }}'
+  action:
+  - service: climate.turn_off
+    entity_id: climate.daikin_ac
+
+### TURN OFF DAIKIN AC WHEN SUNRISE ###
+- alias: Turn off Daikin AC When Sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '-01:00:00'
+  condition:
+  - condition: template
+    value_template: '{{ not is_state(''climate.daikin_ac'', ''off'') }}'
+  action:
+  - service: climate.turn_off
+    entity_id: climate.daikin_ac
+  - delay: 00:00:03
+  - service: broadlink.send
+    data:
+      host: 192.168.10.144
+      packet:
+      - JgBQAg4ODRANEAwPDRANAANEcTsNLA0QDQ8NEAwtDQ8NEA0PDQ8NLA0QDSwNLA4PDSwNLA4sDSwNLA4ODRANLA4PDQ8MEA0QDQ8NDw0QDQ8NEAwQDSwNDw4sDg4ODg0QDSwOKw4PDQ8NDw0QDRAMDw0QDRANDg0QDQ8ODwwQDQ8ODw0PDSwOKw4sDQ8NLA4PDSwOLA0ABH5xOw0sDg4NDw0QDSwODwwQDQ8NEA0sDQ8NLA0sDg8NLA4rDiwNLA0sDRANEAwtDBANDw0QDBANDw0QDQ8NDw0QDQ8NDw0sDg8NEA0ODg8NLA4PDRAMLQwQDg4NLA4PDSwODg0sDiwNDw0QDSwNLA4ODRANLA4PDQ8NLQwtDQ8NLA0sDQAEfnI6DSwNEA0QDQ4NLQ0PDRANDw0PDSwODw0sDiwNDw0sDS0NLAwtDSwNDw0QDSwODw0PDQ8NEA0PDQ8NEA0PDg4NEA0PDg8MEA0PDg8MEA0PDg8NDw0PDg8NLA0QDC0MLQ0PDRAOKw4PDQ4OLA0sDRANDw0QDBANDw0QDBANDw0QDQ8NDw0QDRAMDw0QDSwNEA0sDQ8NDw4PDRAMDw4PDRANDg4PDRANDg4PDRANDw0PDRANDw0tDSwNDw0PDRANDw0PDRANDw4ODRANDw4sDisODg0PDg8NEAwPDg8NEA0ODg8NEA0PDQ8NEA0PDQ8NEA0PDS0NDg0QDRANDwwQDSwNLA4PDRANDg4PDRANDw0PDRANDw0PDRANDw0QDBANDw0QDC0MLQ4ODRANLA0sDiwNDw0ADQUAAAAAAAAAAA==
+  - service: notify.telegram_message
+    data:
+      title: '*[DAIKIN AC WAS OFF]*'
+      message: 'Time: {{ states(''sensor.time'') }}. Date: {{ states(''sensor.date'') }}.'
+
+      

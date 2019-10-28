@@ -1,0 +1,56 @@
+- platform: template
+  sensors:
+    xiaomi_mi_9_current_battery:
+      friendly_name: "Xiaomi Mi 9 Current Battery"
+      value_template: "{{ state_attr('device_tracker.life360_trinh_tien_thanh', 'battery') }}"
+    xiaomi_mi_9_charging:
+      friendly_name: "Xiaomi Mi 9 Charging"
+      value_template: >-
+        {% if is_state_attr('device_tracker.life360_trinh_tien_thanh', 'battery_charging', true) %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      icon_template: >-
+        {% if is_state_attr('device_tracker.life360_trinh_tien_thanh', 'battery_charging', true) %}
+          mdi:flash
+        {% else %}
+          mdi:flash-off
+        {% endif %}
+    trinh_s_speed:
+      friendly_name: "Trinh's Speed"
+      value_template: >-
+        {% if is_state_attr('device_tracker.life360_trinh_tien_thanh', 'speed', 'unknown') %}
+          Stop
+        {% elif is_state_attr('device_tracker.life360_trinh_tien_thanh', 'speed', 0) %}
+          Stop
+        {% else %}
+          {{ state_attr('device_tracker.life360_trinh_tien_thanh', 'speed') }}
+        {% endif %}
+    iphone_7_plus_current_battery:
+      friendly_name: "iPhone 7 Plus Current Battery"
+      value_template: "{{ state_attr('device_tracker.life360_ngo_ngoc_anh', 'battery') }}"
+    iphone_7_plus_charging:
+      friendly_name: "iPhone 7 Plus Charging"
+      value_template: >-
+        {% if is_state_attr('device_tracker.life360_ngo_ngoc_anh', 'battery_charging', true) %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      icon_template: >-
+        {% if is_state_attr('device_tracker.life360_ngo_ngoc_anh', 'battery_charging', true) %}
+          mdi:flash
+        {% else %}
+          mdi:flash-off
+        {% endif %}
+    anh_s_speed:
+      friendly_name: "Anh's Speed"
+      value_template: >-
+        {% if is_state_attr('device_tracker.life360_ngo_ngoc_anh', 'speed', 0) %}
+          Stop
+        {% elif is_state_attr('device_tracker.life360_ngo_ngoc_anh', 'speed', 'unknown') %}
+          Stop
+        {% else %}
+          {{ state_attr('device_tracker.life360_ngo_ngoc_anh', 'speed') }}
+        {% endif %}

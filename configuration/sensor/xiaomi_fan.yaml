@@ -1,0 +1,30 @@
+- platform: template
+  sensors:
+# XIAOMI SMART FAN #
+    xiaomi_fan_state:
+      friendly_name: "Xiaomi Fan State"
+      value_template: >
+        {% if is_state('fan.xiaomi_smart_fan', 'off') %}
+          off
+        {% else %}
+          {{ state_attr('fan.xiaomi_smart_fan', 'speed') }}
+        {% endif %}
+    xiaomi_fan_angle:
+      friendly_name: "Xiaomi Fan Angle"
+      value_template: >
+        {% if is_state_attr('fan.xiaomi_smart_fan', 'oscillate', false) %}
+          0
+        {% else %}
+          {{ state_attr('fan.xiaomi_smart_fan', 'angle') }}
+        {% endif %}
+    xiaomi_fan_led_brightness:
+      friendly_name: "Xiaomi Fan Led brightness"
+      value_template: "{{ state_attr('fan.xiaomi_smart_fan', 'led_brightness') }}"
+    xiaomi_fan_natural_mode:
+      friendly_name: "Xiaomi Fan Natural Mode"
+      value_template: >
+        {% if is_state_attr('fan.xiaomi_smart_fan', 'natural_speed', 0) %}
+          off
+        {% else %}
+          on
+        {% endif %}

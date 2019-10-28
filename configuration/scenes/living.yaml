@@ -1,0 +1,43 @@
+- name: living normal
+  entities:
+    switch.living_room_ceiling_light:
+      state: on
+
+- name: living dim
+  entities:
+    switch.living_room_led_light:
+      state: on
+    light.desk_lamp:
+      state: on
+      transition: 2
+      brightness_pct: 0
+    light.gateway_light_04cf8c91346e:
+      state: on
+      transition: 0
+      brightness_pct: 50
+
+- name: living movie
+  entities:
+    switch.living_room_ceiling_light:
+      state: on
+    switch.living_room_led_light:
+      state: on
+    media_player.tivi:
+      state: on
+    media_player.soundbar:
+      state: on
+    fan.kangaroo_fan:
+      state: on
+
+- name: living game # Board Games not Computer games XD
+  entities:
+    switch.living_room_ceiling_light:
+      state: on
+    switch.living_room_wall_light_1:
+      state: on
+    media_player.tivi:
+      state: on
+    media_player.soundbar:
+      state: on
+    fan.kangaroo_fan:
+      state: on

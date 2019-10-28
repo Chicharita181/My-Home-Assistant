@@ -1,0 +1,8 @@
+person.trinh_tien_thanh:
+  entity_picture: '/local/images/Pics/Trinh.jpg'
+person.ngo_ngoc_anh:
+  entity_picture: '/local/images/Pics/Anh.jpg'
+device_tracker.life360_ngo_ngoc_anh:
+  friendly_name: Ánh
+device_tracker.life360_trinh_tien_thanh:
+  friendly_name: Thành

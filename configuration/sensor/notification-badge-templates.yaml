@@ -1,0 +1,148 @@
+### Notification Badge Templates (needed for the badges to appear on buttons!)
+
+# Template All Lights
+  - platform: template
+    sensors:
+      current_lights_on:
+        friendly_name: All Lights Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+
+          {% if is_state('light.desk_lamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.bedside_lamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.gateway_light_04cf8c91346e', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.gateway_light_7811dcdefc7f', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.living_room_ceiling_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.living_room_wall_light_1', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.living_room_led_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.bedroom_ceiling_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.bedroom_wall_light_1', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.bedroom_wall_light_2', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.bedroom_led_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.gate_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.balcony_light', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+
+          {{total}}
+
+# Template All Devices
+  - platform: template
+    sensors:
+      current_devices_on:
+        friendly_name: All Devices Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+
+          {% if is_state('switch.mp1_fan', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.mp1_mibox', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.mp1_soundbar', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.mp1_tivi', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.power_strip', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('media_player.tivi', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('media_player.soundbar', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('input_boolean.rice_cooker', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+
+          {{total}}
+
+# Template All Sensors
+  - platform: template
+    sensors:
+      current_sensors_on:
+        friendly_name: All Sensors Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+
+          {% if is_state('binary_sensor.motion_sensor_158d00023db50c', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.motion_sensor_158d0002732c91', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.motion_sensor_158d000275c945', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.motion_sensor_158d0002760432', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.door_window_sensor_158d0001f369e9', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+
+          {{total}}
+
+# Template All Climate
+  - platform: template
+    sensors:
+      current_climate_valves_on:
+        friendly_name: All Climate Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+
+          {% if is_state('climate.daikin_ac', 'cool') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('climate.daikin_ac', 'heat') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('climate.lg_ac', 'cool') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('fan.hitachi_fan', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('fan.kangaroo_fan', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('fan.mitsubishi_fan', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('fan.xiaomi_smart_fan', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+
+          {{total}}

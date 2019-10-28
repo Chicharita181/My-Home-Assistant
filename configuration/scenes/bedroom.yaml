@@ -1,0 +1,31 @@
+- name: bedroom normal
+  entities:
+    switch.bedroom_ceiling_light:
+      state: on
+    switch.bedroom_wall_light_1:
+      state: on
+    switch.bedroom_wall_light_2:
+      state: on
+
+- name: bedroom romantic
+  entities:
+    light.bedside_lamp:
+      state: on
+      transition: 2
+      brightness_pct: 1
+    light.gateway_light_7811dcdefc7f:
+      state: on
+      transition: 2
+      brightness_pct: 1
+
+
+- name: bedroom dim
+  entities:
+    light.bedside_lamp:
+      state: on
+      transition: 2
+      brightness_pct: 65
+    light.gateway_light_7811dcdefc7f:
+      state: on
+      transition: 2
+      brightness_pct: 65

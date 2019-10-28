@@ -1,0 +1,30 @@
+- platform: template
+  sensors:
+# LIVING ROOM TV #
+    tv_source:
+      friendly_name: "TV Current Source"
+      value_template: "{{ state_attr('media_player.tivi', 'source') }}"
+    tv_source_mibox:
+      friendly_name: "TV Current Source Mibox"
+      value_template: >-
+        {% if is_state_attr('media_player.tivi', 'source', 'Mibox') %}
+          on
+        {% else %}
+          off
+        {% endif %}
+    tv_source_live_tv:
+      friendly_name: "TV Current Source Live TV"
+      value_template: >-
+        {% if is_state_attr('media_player.tivi', 'source', 'Live_TV') %}
+          on
+        {% else %}
+          off
+        {% endif %}
+    tv_source_play_station:
+      friendly_name: "TV Current Source PlayStation"
+      value_template: >-
+        {% if is_state_attr('media_player.tivi', 'source', 'Play_Station') %}
+          on
+        {% else %}
+          off
+        {% endif %}

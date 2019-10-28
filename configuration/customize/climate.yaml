@@ -1,0 +1,8 @@
+#
+#Climate
+climate.daikin_ac:
+  friendly_name: Daikin AC
+  icon: mdi:snowflake
+climate.lg_ac:
+  friendly_name: LG AC
+  icon: mdi:snowflake

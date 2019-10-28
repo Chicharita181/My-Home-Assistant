@@ -1,0 +1,41 @@
+### AUTO START DUCKDNS WHEN HASS START ###
+- id: auto_start_duckdns
+  alias: Auto start duckdns
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - delay: 00:05:00
+  - service: hassio.addon_start
+    data:
+      addon: core_duckdns
+
+####### IFTTT WEBHOOK RECEIVED #######
+- id: ifttt_webhook_received
+  alias: Ifttt webhook received
+  trigger:
+  - event_data:
+      action: call_service
+    event_type: ifttt_webhook_received
+    platform: event
+  condition: []
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+
+### UPDATE LOCATION WHEN HASS RESTART ###
+- id: auto_update_location
+  alias: Auto update location when hass start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - service: notify.ios_anhs_iphone
+    data:
+      message: request_location_update
+  - service: notify.ios_trinhs_ipad
+    data:
+      message: request_location_update

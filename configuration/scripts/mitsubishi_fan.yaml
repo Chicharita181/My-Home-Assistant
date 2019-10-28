@@ -1,0 +1,40 @@
+
+# MITSUBISHI FAN #
+mitsubishi_fan_on:
+  alias: Mitsubishi Fan on
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCGAGk1DScNJw0NDQ0MDg0nDQ0NDQwoDScODA0nDQ0MDgwoDScNDQwoDScODAwoDQ0MDgwODA4MDgwoDQ0MDgwODCgNDQwODA4LDwsPDA4LDwwOCykNJw0NDA4MKA0NDA4LDwspDScNDQsPCw8MDgsPDA4MDgsPCw8MDgsPCygNDgsPDCcNAA0FAAA=
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.mitsubishi_fan_state
+mitsubishi_fan_off:
+  alias: Mitsubishi Fan off
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCGAGk1DScNJw0NDQ0MDg0nDQ0NDQwoDScODA0nDQ0MDgwoDScNDQwoDScODAwoDQ0MDgwODA4MDgwoDQ0MDgwODCgNDQwODA4LDwsPDA4LDwwOCykNJw0NDA4MKA0NDA4LDwspDScNDQsPCw8MDgsPDA4MDgsPCw8MDgsPCygNDgsPDCcNAA0FAAA=
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.mitsubishi_fan_state
+mitsubishi_fan_speed:
+  alias: Mitsubishi Fan Speed
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCGAGszDiYOJg4MDgwODA4mDgwODA4mDiYODA4mDgwODA4mDiYODA4mDiYODA4mDgwODA4MDgwODA4mDgwODA4MDiYODA4MDgwODA4MDgwODA4MDiYOJg4MDgwOJg4MDgwODA4mDgwOJg4MDgwODA4MDgwODA4MDgwODA4MDgwOJQ8MDiUPAA0FAAA=
+mitsubishi_fan_timer:
+  alias: Mitsubishi Fan Timer
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCGAGszDyUPJQ4MDgwODA4mDgwODA4mDiYODA4mDgwODA4mDiYODA4mDiYODA4mDgwODA4MDgwODA4mDgwODA4MDiYODA4MDgwODA4MDgwODA4MDiYOJg4MDgwOJg4MDgwODA4mDgwODA4mDgwODA4MDgwODA4MDgwODA4MDgwODA4mDiYOAA0FAAA=

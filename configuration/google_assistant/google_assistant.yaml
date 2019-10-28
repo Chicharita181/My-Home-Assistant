@@ -1,0 +1,72 @@
+  project_id: !secret google_project_id
+  api_key: !secret google_api_key
+  exposed_domains:
+    - switch
+    - light
+    - climate
+    - fan
+    - media_player
+    - sensor
+  entity_config:
+    switch.balcony_light:
+      name: Balcony Light
+    switch.balcony_light_s:
+      expose: false
+    switch.bedroom_all_light:
+      expose: false
+    switch.bedroom_ceiling_light:
+      name: Bedroom Ceiling Light
+    switch.bedroom_led_light:
+      name: Bedroom Led Light
+    switch.bedroom_wall_light_1:
+      name: Bedroom Wall Light 1
+    switch.bedroom_wall_light_2:
+      name: Bedroom Wall Light 2
+    switch.gate_light:
+      name: Gate Light
+    switch.gate_light_s:
+      expose: false
+    switch.hitachi_fan_natural_mode:
+      expose: false
+    switch.hitachi_fan_night_mode:
+      expose: false
+    switch.hitachi_fan_night_mode_10h:
+      expose: false
+    switch.hitachi_fan_swing:
+      expose: false
+    switch.kangaroo_fan_ion:
+      expose: false
+    switch.kangaroo_fan_mist:
+      expose: false
+    switch.kangaroo_fan_swing:
+      expose: false
+    switch.living_room_ceiling_light:
+      name: Living Room Ceiling Light
+    switch.living_room_led_light:
+      name: Living Room Led Light
+    switch.living_room_wall_light_1:
+      name: Living Room Wall Light 1
+    switch.mitsubishi_fan_natural_mode:
+      expose: false
+    switch.mitsubishi_fan_swing:
+      expose: false
+    switch.mp1_fan:
+      expose: false
+    switch.mp1_mibox:
+      expose: false
+    switch.mp1_soundbar:
+      expose: false
+    switch.mp1_tivi:
+      expose: false
+    switch.mute:
+      expose: false
+    switch.power_strip:
+      expose: false
+    switch.xiaomi_fan_buzzer:
+      expose: false
+    switch.xiaomi_fan_child_lock:
+      expose: false
+    switch.xiaomi_fan_natural_mode:
+      expose: false
+    switch.xiaomi_fan_oscillate:
+      expose: false

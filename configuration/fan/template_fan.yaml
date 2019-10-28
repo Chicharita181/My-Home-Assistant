@@ -1,0 +1,55 @@
+- platform: template
+  fans:
+    # MITSUBISHI FAN #
+    mitsubishi_fan:
+      friendly_name: "Mistsubishi Fan"
+      value_template: "{{ states('input_boolean.mitsubishi_fan_state') }}"
+      turn_on:
+        service: script.mitsubishi_fan_on
+      turn_off:
+        service: script.mitsubishi_fan_off
+    # KANGAROO FAN #
+    kangaroo_fan:
+      friendly_name: "Living Room Fan"
+      value_template: "{{ states('switch.mp1_fan') }}"
+      speed_template: "{{ states('input_select.kangaroo_fan_speed') }}"
+      oscillating_template: '{{ "True" if is_state("switch.kangaroo_fan_swing", "on") else "False" }}'
+      turn_on:
+        service: script.kangaroo_fan_on
+      turn_off:
+        service: script.kangaroo_fan_off
+      speeds:
+        - 'low'
+        - 'medium'
+        - 'high'
+      set_speed:
+        service: input_select.select_option
+        entity_id: input_select.kangaroo_fan_speed
+        data_template:
+          option: '{{ speed }}'
+      set_oscillating:
+        service_template: switch.turn_{{ 'on' if oscillating else 'off' }}
+        entity_id: switch.kangaroo_fan_swing
+    # HITACHI FAN #
+    hitachi_fan:
+      friendly_name: "Hitachi Fan"
+      value_template: "{{ states('switch.mi_plug_2') }}"
+      speed_template: "{{ states('input_select.hitachi_fan_speed') }}"
+      oscillating_template: '{{ "True" if is_state("switch.hitachi_fan_swing", "on") else "False" }}'
+      turn_on:
+        service: script.hitachi_fan_on
+      turn_off:
+        service: script.hitachi_fan_off
+      speeds:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+      set_speed:
+        service: input_select.select_option
+        entity_id: input_select.hitachi_fan_speed
+        data_template:
+          option: '{{ speed }}'
+      set_oscillating:
+        service_template: switch.turn_{{ 'on' if oscillating else 'off' }}
+        entity_id: switch.hitachi_fan_swing

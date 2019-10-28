@@ -1,0 +1,27 @@
+
+# KANGAROO FAN #
+kangaroo_fan_on:
+  alias: Kangaroo Fan on
+  sequence:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.mp1_fan
+  - delay:
+      milliseconds: 15
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgCcACsMKw0PKCsMKw0PKA8oDygPKA8pKg0PAAEKKwwrDQ8oKwwrDQ8oDygPKA8oDykqDQ8AAQorDCsNDikqDSsNDikPKA8oDygPKSoNDwABCisMKw0OKSoNKw0OKQ8oDygPKA8oKw0PAAEKKg0rDQ4pKg0qDQ8pDygPKA8oDygqDg4AAQsqDSsMDiopDisMDygPKQ8oDygPKCoODgANBQAAAAAAAAAAAAAAAA==
+kangaroo_fan_off:
+  alias: Kangaroo Fan off
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - JgAEASsNKg0PKCsNKQ4PKCsNDygPKA8oDygPAAEKKw0pDg8oKw0qDQ8oKwwPKQ8oDygPKA8AAQorDSkODygrDCsNDikrDA8pDikPKA8oDwABCioNKw0OKSsMKw0PKCoNDygPKQ8oDygPAAEKKg0rDQ4pKg0qDQ8pKQ4PKA8oDykPKA8AAQoqDSsMDykqDSsMDiopDg8oDikPKA8pDwABCioNKwwOKSoOKg0OKSoODygPKA8oDygPAAEKKg4qDQ4pKg4qDQ4pKw0OKQ8oDygPKA8AAQorDSoNDikrDSoNDikrDA4qDikPKA8oDwABCisMKw0OKSoNKg4PKCsMDygPKQ4pDikPAA0FAAAAAA==
+  - delay: 00:00:01
+  - service: switch.turn_off
+    data:
+      entity_id: switch.mp1_fan

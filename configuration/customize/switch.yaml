@@ -1,0 +1,63 @@
+#
+#Switchs:
+switch.power_strip:
+  friendly_name: Power Strip
+  icon: mdi:power
+switch.living_room_ceiling_light:
+  friendly_name: Living Room Ceiling Light
+  icon: mdi:ceiling-light
+switch.living_room_wall_light_1:
+  friendly_name: Living Room Wall Light 1
+  icon: mdi:wall-sconce-flat
+switch.living_room_led_light:
+  friendly_name: Living Room Led Light
+  icon: mdi:led-strip
+switch.bedroom_ceiling_light:
+  friendly_name: Bedroom Ceiling Light
+  icon: mdi:ceiling-light
+switch.bedroom_wall_light_1:
+  friendly_name: Bedroom Wall Light 1
+  icon: mdi:wall-sconce-flat
+switch.bedroom_wall_light_2:
+  friendly_name: Bedroom Wall Light 2
+  icon: mdi:wall-sconce-flat
+switch.bedroom_led_light:
+  friendly_name: Bedroom Led Light
+  icon: mdi:led-strip
+switch.bedroom_all_light:
+  friendly_name: Bedroom All Light
+  icon: mdi:alarm-light-outline
+switch.balcony_light_s:
+  friendly_name: Balcony Light (s)
+  icon: mdi:lightbulb-outline
+switch.gate_light:
+  friendly_name: Gate Light
+  icon: mdi:octagram-outline
+switch.balcony_light:
+  friendly_name: Balcony Light
+  icon: mdi:octagram-outline
+switch.gate_light_s:
+  friendly_name: Gate Light (s)
+  icon: mdi:lightbulb-outline
+binary_sensor.switch_158d00020feeab:
+  friendly_name: Fan Switch
+binary_sensor.switch_158d00020fef2d:
+  friendly_name: Gate Ringbell
+binary_sensor.wall_switch_both_158d000255ea52:
+  friendly_name: Wall Switch Both
+binary_sensor.wall_switch_left_158d000255ea52:
+  friendly_name: Wall Switch Left
+binary_sensor.wall_switch_right_158d000255ea52:
+  friendly_name: Wall Switch Right
+switch.mp1_fan:
+  friendly_name: MP1 Fan
+  icon: mdi:power
+switch.mp1_tivi:
+  friendly_name: MP1 Tivi
+  icon: mdi:power
+switch.mp1_soundbar:
+  friendly_name: MP1 Soundbar
+  icon: mdi:power
+switch.mp1_mibox:
+  friendly_name: MP1 Mibox
+  icon: mdi:power

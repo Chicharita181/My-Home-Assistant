@@ -1,0 +1,8 @@
+#Select Timer
+daikin_ac_select_timer:
+  name: Daikin AC Select Timer
+  initial: 6
+  min: 1
+  max: 10
+  step: 1
+  icon: mdi:timer

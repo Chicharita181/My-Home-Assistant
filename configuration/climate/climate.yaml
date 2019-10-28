@@ -1,0 +1,12 @@
+  - platform: smartir
+    name: Daikin AC
+    unique_id: daikin_ac
+    device_code: 1101
+    controller_data: 192.168.10.144
+    temperature_sensor: sensor.temperature_158d0002f81e37
+    humidity_sensor: sensor.humidity_158d0002f81e37
+  - platform: smartir
+    name: LG AC
+    unique_id: lg_ac
+    device_code: 1061
+    controller_data: 192.168.10.144

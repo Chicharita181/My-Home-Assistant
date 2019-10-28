@@ -1,0 +1,53 @@
+### LIVING ROOM FAN TOGGLE ###
+- id: living_room_fan_toggle
+  alias: Living room fan toggle
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00020feeab
+      click_type: single
+  condition: []
+  action:
+  - service: fan.toggle
+    entity_id: fan.kangaroo_fan
+
+### LIVING ROOM TIVI TOGGLE ###
+- id: living_room_tivi_toggle
+  alias: Living room tivi toggle
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00020feeab
+      click_type: long_click_press
+  condition: []
+  action:
+  - service: media_player.toggle
+    entity_id: media_player.tivi
+
+### CLICK LEFT BUTTON TOGGLE XIAOMI FAN ###
+- alias: Click Left button to toggle Xiaomi Fan
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000255ea52
+      click_type: single
+  condition: []
+  action:
+  - service: fan.toggle
+    entity_id: fan.xiaomi_smart_fan
+
+### CLICK BOTH BUTTON TO SET SLEEPING ###
+- alias: Click both button to set Sleeping
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d000255ea52
+      click_type: both
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.go_to_bed

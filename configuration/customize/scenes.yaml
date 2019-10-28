@@ -1,0 +1,13 @@
+##### Script ####
+script.i_am_home:
+  friendly_name: Home
+  icon: mdi:home
+script.i_am_leave:
+  friendly_name: Leaving
+  icon: mdi:logout
+script.go_to_bed:
+  friendly_name: Sleeping
+  icon: mdi:power-sleep
+script.update_location:
+  friendly_name: Update Location
+  icon: mdi:crosshairs-gps

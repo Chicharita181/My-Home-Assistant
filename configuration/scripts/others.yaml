@@ -1,0 +1,50 @@
+update_location:
+  alias: Update Location
+  sequence:
+  - service: notify.ios_anhs_iphone
+    data:
+      message: "request_location_update"
+  - service: notify.ios_trinhs_ipad
+    data:
+      message: "request_location_update"
+
+notify_camera:
+  sequence:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.living_room_camera
+        filename: /config/www/photos/living_room_camera.jpg
+    - service: notify.telegram_message
+      data:
+        title: '*Camera An Ninh*'
+        message: " Phát hiện báo động"
+    - service: notify.telegram_message
+      data:
+        title: '*Camera An Ninh*'
+        message: " Phát hiện báo động"
+        data:
+          photo:
+            - file: /config/www/photos/living_room_camera.jpg
+              caption: Hình ảnh ghi vào lúc {{ states('sensor.time') }} ngày {{ states('sensor.date') }}.
+camera_snapshot:
+  sequence:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.living_room_camera
+        filename: /config/www/photos/living_room_camera_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
+turn_on_tivi:
+  alias: Turn on Tivi
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - 'JgBGAJWPFTMTNRQ0FA8UDxQPEhESERI2EjYTNRQPFA8UDxUOFQ8SNRQPFA8UNBQ0EhESERI2ExAUNBUzFQ4VDxUzFDQUDxQADQUAAA=='
+turn_off_tivi:
+  alias: Turn off Tivi
+  sequence:
+  - service: broadlink.send
+    data:
+      host: 192.168.10.141
+      packet:
+      - 'JgDSAJaUEzYTNxI4EhISEhMSERMRExI4EjgSNxMSEBQSEhITEBQRExITERMRNhU3EhMQFBI3EzcSOBM2EhMRExI3EjgSEhIABgCUlBI4EzYUNhITERMSEhITEBQSNxM3EjgTERISEhMRExISERQRExISEjgSOBMRERMRORI3EzcTNxETERMRORI3ExISAAYAlJQTNhI4EzYUERISEhMRExISEjgSNxM3EhISExETEhITEhETEhMRExI3EjgTERITETgSOBI3EzcSEhITETgTNxISEgANBQAAAAAAAA=='
