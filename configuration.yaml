@@ -1,0 +1,148 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Trinh's Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/Ho_Chi_Minh
+  # Customization file
+  customize: !include_dir_merge_named configuration/customize/
+  whitelist_external_dirs:
+    - /tmp
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: !secret domain
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - yeelight
+  enable:
+    - homekit
+
+logbook: !include configuration/logbook/logbook.yaml
+
+history: !include configuration/history/history.yaml
+
+lovelace:
+  mode: yaml
+
+frontend:
+  javascript_version: auto
+  themes: !include_dir_named configuration/themes/
+
+
+
+# HACS
+hacs:
+  token: !secret HACS
+
+xiaomi_aqara:
+  discovery_retry: 10
+  gateways:
+    - mac: 78:11:DC:DE:FC:7F
+      key: !secret gateways_1_key
+      host: '192.168.10.46'
+    - mac: 04:CF:8C:91:34:6E
+      key: !secret gateways_2_key
+      host: '192.168.10.45'
+
+yeelight:
+  devices:
+    192.168.10.252:
+      name: Desk Lamp
+      model: color1
+    192.168.10.49:
+      name: Bedside Lamp
+      model: bslamp1
+
+xiaomi_cooker:
+  name: Xiaomi Rice Cooker
+  host: 192.168.10.219
+  token: !secret cooker_token
+  model: chunmi.cooker.normal2
+
+smartir:
+  update_branch: rc
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - !secret trinh_id
+notify:
+  - name: Telegram Message
+    platform: telegram
+    chat_id: !secret trinh_id
+
+life360:
+  accounts:
+    - username: !secret life360_username
+      password: !secret life360_password
+  interval_seconds: 10
+  max_gps_accuracy: 200
+  max_update_wait:
+    minutes: 45
+  warning_threshold: 2
+  error_threshold: 3
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+    mode: daily
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 60
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+# Text to speech
+tts:
+  - platform: google_translate
+    cache: false
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: !secret domain
+    service_name: google_say
+    language: 'vi'
+
+# Google Assistant Configuration
+google_assistant: !include configuration/google_assistant/google_assistant.yaml
+
+# Homekit Configuration
+homekit: !include configuration/homekit/homekit.yaml
+
+alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
+climate: !include configuration/climate/climate.yaml
+
+switch: !include_dir_merge_list configuration/switch/
+light: !include configuration/light/light.yaml
+fan: !include_dir_merge_list configuration/fan/
+media_player: !include configuration/media_player/media_player.yaml
+
+sensor: !include_dir_merge_list configuration/sensor/
+binary_sensor: !include configuration/binary_sensors/binary_sensors.yaml
+
+group: !include_dir_merge_named configuration/groups/
+automation: !include_dir_merge_list configuration/automations/
+script: !include_dir_merge_named configuration/scripts/
+scene: !include_dir_merge_list configuration/scenes/
+
+input_boolean: !include_dir_merge_named configuration/input_boolean/
+input_number: !include configuration/input_number/input_number.yaml
+input_select: !include_dir_merge_named configuration/input_select/
+zone: !include configuration/zones/zones.yaml

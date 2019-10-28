@@ -1,0 +1,25 @@
+# Custom Card Resources
+resources:
+  !include lovelace/resources/resources.yaml
+
+# Compact Custom Header
+# You will need to hide views if you want to
+# have views that behave like popup cards!
+cch:
+  !include lovelace/cch/compact-custom-header.yaml
+
+# Decluttering Templates
+# These are the templates used to avoid too much
+# duplicate code.
+decluttering_templates:
+  !include_dir_named lovelace/templates
+
+# Views
+# The following 5 views are swipable, the order
+# of these 5 files is the swipe order as well.
+# The first view is the page 0. In my setup
+# the interface defaults to view 1.
+title: Trinh's Home
+background: var(--background-image) # This is the background image that will be used in all the views. (currently backgrounds are set in themes, dont edit this if you want themes to work)
+views:
+  !include_dir_merge_list lovelace/views/
