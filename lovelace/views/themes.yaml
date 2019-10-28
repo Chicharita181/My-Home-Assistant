@@ -1,0 +1,47 @@
+- title: Themes
+  path:  themes
+  icon: mdi:alpha-t-box
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: System
+            - icon1: mdi:cellphone-arrow-down
+            - path1: system
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Theme Selector'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Themes (Global)'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: entities
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }
+              entities:
+                - entity: input_select.theme_selector
+                  name: Theme
+                - entity: input_select.border_radius_selector
+                  name: Border
+                - entity: input_select.qam_border_radius_selector
+                  name: QAM Border
+                - entity: input_select.box_shadow_selector
+                  name: Shadow
+            - !include ../includes/blank-card.yaml
+        - type: custom:button-card
+          color_type: blank-card
+          aspect_ratio: 1/1
+        - type: custom:button-card
+          color_type: blank-card
+          aspect_ratio: 1/1

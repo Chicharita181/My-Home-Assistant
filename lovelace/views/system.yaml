@@ -1,0 +1,209 @@
+- title: System
+  icon: mdi:cellphone-arrow-down
+  path: system
+  badges:
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Themes
+            - icon1: mdi:alpha-t-box
+            - path1: themes
+
+    - type: vertical-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '#### System Info'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:bar-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }
+              entity: sensor.processor_use
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:bar-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }
+              entity: sensor.swap_use_percent
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:bar-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }
+              entity: sensor.disk_use_percent_home
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:bar-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }
+              entity: sensor.memory_use_percent
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:hui-glance-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);;
+                  --paper-item-icon-color: black;
+                  color: black;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-family: Helvetica;
+                  font-size: 12px;
+                  opacity: 0.8;
+                  overflow: hidden;
+                }
+              title: Network
+              columns: 3
+              show_state: true
+              show_name: true
+              entities:
+                - entity: sensor.speedtest_ping
+                  name: Ping
+                - entity: sensor.speedtest_download
+                  name: Download
+                - entity: sensor.speedtest_upload
+                  name: Upload
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: script.update_location
+                - name: Restart Hass
+                - icon: mdi:restart
+                - lock: true
+                - tap_action:
+                    action: call-service
+                    service: homeassistant.restart
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: script.update_location
+                - name: Update Location
+                - icon: mdi:crosshairs-gps
+                - tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.update_location
+            - type: custom:button-card
+              entity: 'sensor.cpu_temperature'
+              icon: 'mdi:raspberry-pi'
+              aspect_ratio: 1/1
+              name: HassOS
+              styles:
+                card:
+                  - background-color: var(--card-color-off);
+                  - border-radius: 10%
+                  - padding: 10%
+                  - color: ivory
+                  - font-size: 10px
+                  - text-shadow: 0px 0px 5px black
+                  - text-transform: capitalize
+                grid:
+                  - grid-template-areas: '"i temp" "n n" "cpu cpu" "ram ram" "sd sd"'
+                  - grid-template-columns: 1fr 1fr
+                  - grid-template-rows: 1fr min-content min-content min-content min-content
+                name:
+                  - font-weight: bold
+                  - font-size: 13px
+                  - color: white
+                  - align-self: middle
+                  - justify-self: start
+                  - padding-bottom: 4px
+                img_cell:
+                  - justify-content: start
+                  - align-items: start
+                  - margin: none
+                icon:
+                  - color: >
+                      [[[
+                        if (entity.state < 60) return 'lime';
+                        if (entity.state >= 60 && entity.state < 80) return 'orange';
+                        else return 'red';
+                      ]]]
+                  - width: 70%
+                  - margin-top: -10%
+                custom_fields:
+                  temp:
+                    - align-self: start
+                    - justify-self: end
+                  cpu:
+                    - padding-bottom: 2px
+                    - align-self: middle
+                    - justify-self: start
+                    - --text-color-sensor: '[[[ if (states["sensor.swap_use_percent"].state > 80) return "red"; ]]]'
+                  ram:
+                    - padding-bottom: 2px
+                    - align-self: middle
+                    - justify-self: start
+                    - --text-color-sensor: '[[[ if (states["sensor.memory_use_percent"].state > 80) return "red"; ]]]'
+                  sd:
+                    - align-self: middle
+                    - justify-self: start
+                    - --text-color-sensor: '[[[ if (states["sensor.disk_use_percent_home"].state > 80) return "red"; ]]]'
+              custom_fields:
+                temp: >
+                  [[[
+                    return `<ha-icon
+                      icon="mdi:thermometer"
+                      style="width: 12px; height: 12px; color: yellow;">
+                      </ha-icon><span>${entity.state}°C</span>`
+                  ]]]
+                cpu: >
+                  [[[
+                    return `<ha-icon
+                      icon="mdi:server"
+                      style="width: 12px; height: 12px; color: deepskyblue;">
+                      </ha-icon><span>CPU: <span style="color: var(--text-color-sensor);">${states['sensor.processor_use'].state}%</span></span>`
+                  ]]]
+                ram: >
+                  [[[
+                    return `<ha-icon
+                      icon="mdi:memory"
+                      style="width: 12px; height: 12px; color: deepskyblue;">
+                      </ha-icon><span>RAM: <span style="color: var(--text-color-sensor);">${states['sensor.memory_use_percent'].state}%</span></span>`
+                  ]]]
+                sd: >
+                  [[[
+                    return `<ha-icon
+                      icon="mdi:harddisk"
+                      style="width: 12px; height: 12px; color: deepskyblue;">
+                      </ha-icon><span>SD: <span style="color: var(--text-color-sensor);">${states['sensor.disk_use_percent_home'].state}%</span></span>`
+                  ]]]
+            - !include ../includes/blank-card.yaml

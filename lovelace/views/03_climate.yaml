@@ -1,0 +1,285 @@
+- title: Cimates
+  icon: mdi:air-conditioner
+  path: climate
+  popup_cards:
+    !include ../popup-cards/climate.yaml
+  badges:
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Weather
+            - icon1: weather-cloudy
+            - path1: weather
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Climate Control'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Fan'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.kangaroo_fan
+                - name: Fan
+                - label: Living Room
+                - show_state: true
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.xiaomi_smart_fan
+                - name: Fan
+                - label: Master Bedroom
+                - show_state: true
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.hitachi_fan
+                - name: Fan
+                - label: Second Bedroom
+                - show_state: true
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.mitsubishi_fan
+                - name: Fan
+                - label: Kitchen
+                - show_state: true
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+
+        #### AIR CONDITIONER ####
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Thermostat'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: climate
+              variables:
+                - entity: climate.daikin_ac
+                - ambient_temperature: sensor.temperature_158d0002f81e37
+            - type: custom:decluttering-card
+              template: climate
+              variables:
+                - entity: climate.lg_ac
+                - ambient_temperature: sensor.living_room_temp_temperature
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: horizontal-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: state_button
+                  variables:
+                    - entity: sensor.daikin_ac_mode
+                    - show_state: true
+                    - show_icon: false
+                    - name: Mode
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                    - hold_action:
+                        action: more-info
+                        haptic: light
+                - type: custom:decluttering-card
+                  template: state_button
+                  variables:
+                    - entity: sensor.daikin_ac_current_fan_mode
+                    - show_state: true
+                    - show_icon: false
+                    - name: Fan
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                    - hold_action:
+                        action: more-info
+                        haptic: light
+            - type: horizontal-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: state_button
+                  variables:
+                    - entity: sensor.lg_ac_mode
+                    - show_state: true
+                    - show_icon: false
+                    - name: Mode
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                    - hold_action:
+                        action: more-info
+                        haptic: light
+                - type: custom:decluttering-card
+                  template: state_button
+                  variables:
+                    - entity: sensor.lg_ac_current_fan_mode
+                    - show_state: true
+                    - show_icon: false
+                    - name: Fan
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                    - hold_action:
+                        action: more-info
+                        haptic: light
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: climate.daikin_ac
+                - show_state: false
+                - show_icon: true
+                - size: 25%
+                - name: Daikin Air Conditioner
+                - icon: mdi:power
+                - tap_action:
+                    action: toggle
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: climate.lg_ac
+                - show_state: false
+                - show_icon: true
+                - size: 25%
+                - name: LG Air Conditioner
+                - icon: mdi:power
+                - tap_action:
+                    action: toggle
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Temperature'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - sensor.living_room_temp_temperature
+                - name: Living Room
+                - line_color: 'red'
+                - font_size: 64
+                - decimals: 1
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - sensor.temperature_158d0002f81e37
+                - name: Master Bedroom
+                - line_color: 'red'
+                - font_size: 64
+                - decimals: 1
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Humidity'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - sensor.living_room_temp_humidity
+                - name: Living Room
+                - line_color: '#1427ff'
+                - font_size: 64
+                - decimals: 1
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - sensor.humidity_158d0002f81e37
+                - name: Master Bedroom
+                - line_color: '#1427ff'
+                - font_size: 64
+                - decimals: 1
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Illumination'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - entity: sensor.illumination_158d00023db50c
+                      name: Living Room
+                    - entity: sensor.illumination_158d000275c945
+                      name: M.Bedroom
+                    - entity: sensor.illumination_158d0002732c91
+                      name: S.Bedroom
+                    - entity: sensor.illumination_158d0002760432
+                      name: Kitchen
+                - name: In House
+                - line_color: '#1427ff'
+                - font_size: 64
+                - decimals: 1
+                - line_width: 4
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - !include ../includes/blank-card.yaml

@@ -1,0 +1,281 @@
+- title: Media
+  icon: mdi:television
+  path: media
+  badges:
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Lights
+            - icon1: ceiling-light
+            - path1: lights
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Media Player Control'
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.tivi
+                - name: TV
+                - label: Living Room
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: Soundbar
+                - label: Living Room
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: script.soundbar_source
+                - name: Source
+                - label: Soundbar Input
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_mibox
+                - name: Mibox
+                - label: Android TV
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.mibox
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_live_tv
+                - name: Viettel TV
+                - label: Live TV
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.viettel_tv
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_play_station
+                - name: Playstation
+                - label: Game
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.playstation
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.android_tv
+                - name: Android TV
+                - label: Mibox
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.living_room
+                - name: Google Home
+                - label: Living Room
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.bedroom
+                - name: Google Home
+                - label: Bedroom
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mute
+                - name: MUTE
+                - label: Volume Mute
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: DOWN
+                - icon: mdi:volume-minus
+                - label: Volume down
+                - show_state: false
+                - tap_action:
+                    action: call-service
+                    service: media_player.volume_down
+                    service_data:
+                      entity_id: media_player.soundbar
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: UP
+                - icon: mdi:volume-plus
+                - label: Volume up
+                - show_state: false
+                - tap_action:
+                    action: call-service
+                    service: media_player.volume_up
+                    service_data:
+                      entity_id: media_player.soundbar
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: conditional
+              conditions:
+                - entity: media_player.android_tv
+                  state_not: "off"
+              card:
+                type: custom:mini-media-player
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);;
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                entity: media_player.android_tv
+                artwork: cover
+                source: icon
+                background: "/local/Pics/dark-blur.jpg"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: conditional
+              conditions:
+                - entity: media_player.living_room
+                  state_not: "off"
+              card:
+                type: custom:mini-media-player
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);;
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                entity: media_player.living_room
+                artwork: cover
+                source: icon
+                background: "/local/Pics/dark-blur.jpg"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: conditional
+              conditions:
+                - entity: media_player.bedroom
+                  state_not: "off"
+              card:
+                type: custom:mini-media-player
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);;
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                entity: media_player.bedroom
+                artwork: cover
+                source: icon
+                background: "/local/Pics/dark-blur.jpg"
+            - !include ../includes/blank-card.yaml

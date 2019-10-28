@@ -1,0 +1,109 @@
+- title: Currently On
+  path:  currently-on
+  icon: mdi:lightbulb-on-outline
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Lights
+            - icon1: ceiling-light
+            - path1: lights
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Currently ON'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: glance
+                title: Lights
+                show_state: false
+                columns: 3
+              filter:
+                include:
+                  - domain: light
+                exclude:
+                - state: "off"
+                - state: "unavailable"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: glance
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                title: Switchs
+                show_state: false
+                columns: 3
+              filter:
+                include:
+                  - domain: switch
+                exclude:
+                - state: "off"
+                - state: "unavailable"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: glance
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                title: Climates
+                show_state: false
+                columns: 3
+              filter:
+                include:
+                  - domain: fan
+                  - domain: climate
+                exclude:
+                - state: "off"
+                - state: "unavailable"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: glance
+                style: |
+                  ha-card {
+                    border-radius: {{ states('input_select.border_radius') }};
+                    background: var(--card-color-off);
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    opacity: 0.8;
+                  }
+                title: Media Players
+                show_state: false
+                columns: 3
+              filter:
+                include:
+                  - domain: media_player
+                exclude:
+                - state: "off"
+                - state: "unavailable"
+            - !include ../includes/blank-card.yaml

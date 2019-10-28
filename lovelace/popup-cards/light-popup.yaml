@@ -1,0 +1,84 @@
+  light.desk_lamp:
+    title: Desk Lamp
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: light.desk_lamp
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+  light.bedside_lamp:
+    title: Bedside Lamp
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: light.bedside_lamp
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+  light.gateway_light_04cf8c91346e:
+    title: Living Room Gateway Light
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: light.gateway_light_04cf8c91346e
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+  light.gateway_light_7811dcdefc7f:
+    title: Bedoom Gateway Light
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: light.gateway_light_7811dcdefc7f
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml

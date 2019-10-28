@@ -1,0 +1,254 @@
+- title: Rice Cooker
+  path: rice_cooker
+  icon: mdi:stove
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Lights
+            - icon1: ceiling-light
+            - path1: lights
+        - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Xiaomi Rice Cooker'
+
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '#### Select Mode'
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Rice
+                - value: "Rice"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Rice'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Quick Rice
+                - value: "Quick Rice"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Quick Rice'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Porridge
+                - value: "Porridge"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Porridge'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Warm Up
+                - value: "Warm Up Rice"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Warm Up Rice'
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Cake
+                - value: "Cake"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Cake'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Yoghurt
+                - value: "Yoghurt"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Yoghurt'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Sweet Rice
+                - value: "Sweet Rice"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Sweet Rice'
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - name: Steaming
+                - value: "Steaming"
+                - tap_action:
+                    action: call-service
+                    service: input_select.select_option
+                    service_data:
+                      entity_id: input_select.rice_cooker_menu
+                      option: 'Steaming'
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '#### Control'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: 'custom:decluttering-card'
+              template: state_button
+              variables:
+                - entity: input_select.rice_cooker_menu
+                - show_icon: true
+                - show_state: true
+                - aspect_ratio: 1/1
+                - tap_action:
+                    action: more-info
+                - hold_action:
+                    action: more-info
+            - !include ../includes/blank-card.yaml
+            - type: 'custom:decluttering-card'
+              template: state_button
+              variables:
+                - entity: input_boolean.rice_cooker
+                - show_icon: true
+                - aspect_ratio: 1/1
+                - value: 'on'
+                - tap_action:
+                    action: call-service
+                    service: input_boolean.turn_on
+                    service_data:
+                      entity_id: input_boolean.rice_cooker
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: heavy
+            - !include ../includes/blank-card.yaml
+            - type: 'custom:decluttering-card'
+              template: state_button
+              variables:
+                - entity: sensor.rice_cooker_current_menu
+                - show_icon: true
+                - name: Stop
+                - aspect_ratio: 1/1
+                - value: 'Stop'
+                - tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.cooker_stop
+                - hold_action:
+                    action: more-info
+                    haptic: heavy
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '#### Status'
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.rice_cooker_current_mode
+                - name: Mode
+                - tap_action:
+                    action: more-info
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.rice_cooker_current_stage_name
+                - name: Stage
+                - tap_action:
+                    action: more-info
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.xiaomi_cooker_duration
+                - name: Duration
+                - tap_action:
+                    action: more-info
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.xiaomi_cooker_remaining
+                - name: Remaining
+                - tap_action:
+                    action: more-info
+                    haptic: light
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - sensor.xiaomi_cooker_temperature
+                - name: Temperature
+                - line_color: '#1427ff'
+                - font_size: 64
+                - decimals: 1
+                - graph: line # Changed/Added in 0.12.3
+                - extrema: true
+            - !include ../includes/blank-card.yaml

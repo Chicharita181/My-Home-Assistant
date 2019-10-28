@@ -1,0 +1,673 @@
+# Daikin AC Popup Card
+  climate.daikin_ac:
+    title: Daikin AC
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: climate.daikin_ac
+            - !include ../includes/blank-card.yaml
+        - type: entities
+          style: |
+            ha-card {
+              border-radius: var(--border-radius);
+              background: var(--background-card);
+              --label-badge-text-color: var(--label-color-off);
+              color: var(--primary-text-color);
+              opacity: 0.8;
+            }
+          entities:
+            - entity: input_number.daikin_ac_select_timer
+              name: Thời gian (giờ)
+            - entity: input_boolean.daikin_ac_timer
+              name: Bật Hẹn giờ
+        - !include ../includes/bottom-card.yaml
+
+# LG AC Popup Card
+  climate.lg_ac:
+    title: LG Air Conditioner
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: more-info-popup
+              variables:
+                - entity: climate.lg_ac
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml
+
+# Living Room Fan Popup Card
+  fan.kangaroo_fan:
+    title: Living Room Fan
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Kangaroo Fan'
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: fan.kangaroo_fan
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fan
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.kangaroo_fan_swing
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:autorenew
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.kangaroo_fan_ion
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:information-variant
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.kangaroo_fan_mist
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:weather-tornado
+                - value: "on"
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+
+# Master Bedroom Fan Popup Card
+  fan.xiaomi_smart_fan:
+    title: Master Bedoom Fan
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      show_title: false
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Xiaomi Smart Fan'
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: fan.xiaomi_smart_fan
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fan
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_state
+                - name: 1
+                - show_icon: false
+                - value: "Level 1"
+                - tap_action:
+                    action: call-service
+                    service: fan.set_speed
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      speed: "Level 1"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_state
+                - name: 2
+                - value: "Level 2"
+                - tap_action:
+                    action: call-service
+                    service: fan.set_speed
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      speed: "Level 2"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_state
+                - name: 3
+                - value: "Level 3"
+                - tap_action:
+                    action: call-service
+                    service: fan.set_speed
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      speed: "Level 3"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_state
+                - name: 4
+                - value: "Level 4"
+                - tap_action:
+                    action: call-service
+                    service: fan.set_speed
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      speed: "Level 4"
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_angle
+                - show_name: true
+                - show_icon: false
+                - name: 'OFF'
+                - value: "0"
+                - tap_action:
+                    action: call-service
+                    service: switch.turn_off
+                    service_data:
+                      entity_id: switch.xiaomi_fan_oscillate
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_angle
+                - name: 30
+                - show_icon: false
+                - value: "30"
+                - tap_action:
+                    action: call-service
+                    service: fan.xiaomi_miio_set_oscillation_angle
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      angle: 30
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_angle
+                - name: 60
+                - show_icon: false
+                - value: "60"
+                - tap_action:
+                    action: call-service
+                    service: fan.xiaomi_miio_set_oscillation_angle
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      angle: 60
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_angle
+                - name: 90
+                - show_icon: false
+                - value: "90"
+                - tap_action:
+                    action: call-service
+                    service: fan.xiaomi_miio_set_oscillation_angle
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      angle: 90
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.xiaomi_fan_angle
+                - name: 120
+                - show_icon: false
+                - value: "120"
+                - tap_action:
+                    action: call-service
+                    service: fan.xiaomi_miio_set_oscillation_angle
+                    service_data:
+                      entity_id: fan.xiaomi_smart_fan
+                      angle: 120
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.xiaomi_fan_natural_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:nativescript
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.xiaomi_fan_buzzer
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:music-circle-outline
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.xiaomi_fan_child_lock
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:shield-account
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: script.xiaomi_fan_set_direction_left
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:rotate-left
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: script.xiaomi_fan_set_direction_right
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:rotate-right
+                - value: "on"
+            - !include ../includes/blank-card.yaml
+
+
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+
+# Second Bedroom Fan Popup Card
+  fan.hitachi_fan:
+    title: Second Bedroom Fan
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      show_title: false
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Hitachi Fan'
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: fan.hitachi_fan
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fan
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: input_select.hitachi_fan_speed
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:format-list-checkbox
+                - tap_action:
+                    action: more-info
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.hitachi_fan_night_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:weather-night
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.hitachi_fan_night_mode_10h
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:brightness-3
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.hitachi_fan_natural_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:nativescript
+                - value: "on"
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.hitachi_fan_swing
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:rotate-3d
+                - value: "on"
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+
+# Kitchen Fan Popup Card
+  fan.mitsubishi_fan:
+    title: Kitchen Fan
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '#### Kitchen Fan Control'
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: fan.mitsubishi_fan
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fan
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: script.mitsubishi_fan_speed
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:speedometer
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.mitsubishi_fan_swing
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:autorenew
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: switch.mitsubishi_fan_natural_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:nativescript
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml
+
+# Daikin AC Fan Mode Popup Card
+  sensor.daikin_ac_current_fan_mode:
+    title: Daikin AC Fan
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Fan Modes'
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: Auto
+                - show_icon: false
+                - value: "auto"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: auto
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: Night
+                - show_icon: false
+                - value: "night"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: night
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: Low
+                - show_icon: false
+                - value: "low"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: low
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: LowMed
+                - show_icon: false
+                - value: "lowMedium"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: lowMedium
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: Medium
+                - show_icon: false
+                - value: "medium"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: medium
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: MedHi
+                - show_icon: false
+                - value: "mediumHigh"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: mediumHigh
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: Hi
+                - show_icon: false
+                - value: "high"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: high
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_current_fan_mode
+                - name: PowFull
+                - show_icon: false
+                - value: "powerful"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_fan_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: powerful
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+
+# Daikin AC Mode Popup Card
+  sensor.daikin_ac_mode:
+    title: Daikin AC Operation
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:autorenew
+                - value: "auto"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_hvac_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: auto
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:snowflake
+                - value: "cool"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_hvac_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: cool
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:water-percent
+                - value: "dry"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_hvac_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: dry
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fan
+                - value: "fan_only"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_hvac_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: fan_only
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:fire
+                - value: "heat"
+                - tap_action:
+                    action: call-service
+                    service: climate.set_hvac_mode
+                    service_data:
+                      entity_id: climate.daikin_ac
+                      fan_mode: heat
+            - type: custom:decluttering-card
+              template: state_button
+              variables:
+                - entity: sensor.daikin_ac_mode
+                - show_name: false
+                - show_icon: true
+                - icon: mdi:power
+                - value: "off"
+                - tap_action:
+                    action: call-service
+                    service: climate.turn_off
+                    service_data:
+                      entity_id: climate.daikin_ac
+                - hold_action:
+                    action: more-info
+
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml
+        - !include ../includes/bottom-card.yaml

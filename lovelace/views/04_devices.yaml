@@ -1,0 +1,177 @@
+- title: Devices
+  path: devices
+  icon: mdi:power-plug
+  popup_cards:
+    !include ../popup-cards/device-popup.yaml
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Devices'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Media Players'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.tivi
+                - color: DodgerBlue
+                - name: Tivi
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: Soundbar
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.android_tv
+                - name: Android TV
+                - label: Cast
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.living_room
+                - color: DodgerBlue
+                - name: Google Home
+                - label: Living Room
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.bedroom
+                - color: DodgerBlue
+                - name: Google Home
+                - label: Bedroom
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Fans'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.kangaroo_fan
+                - name: Fan
+                - label: Living Room
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.xiaomi_smart_fan
+                - name: Fan
+                - label: Master Bedroom
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: fan.hitachi_fan
+                - name: Fan
+                - label: Second Bedroom
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Air Conditionals'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: climate.daikin_ac
+                - name: Daikin AC
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: climate.lg_ac
+                - name: LG AC
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Switchs'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mp1_tivi
+                - name: MP1 TV
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mp1_soundbar
+                - name: MP1 Soundbar
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mp1_fan
+                - name: MP1 Fan
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mp1_mibox
+                - name: MP1 Mibox
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.power_strip
+                - name: Power Strip
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml

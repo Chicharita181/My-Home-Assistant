@@ -1,0 +1,1133 @@
+# Alarm Control Popup Card
+  alarm_control_panel.home_alarm:
+    title: Home Alarm Control
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: alarm-panel
+              style: |
+                  ha-card {
+                    --mdc-theme-primary: 'yellow';
+                    background: var(--background-card);
+                    border-radius: var(--card-border-radius);
+                  }
+              entity: alarm_control_panel.home_alarm
+              states:
+                - arm_home
+                - arm_away
+                - arm_night
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+#Weather Popup Card:
+  input_boolean.weather:
+    title: Weather
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:swipe-card
+          parameters:
+            effect: 'coverflow'
+            grabCursor: true
+          cards:
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### Overview >'
+                - !include ../includes/blank-card.yaml
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: custom:weather-card-chart
+                      style: |
+                        ha-card {
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          background: none;
+                          box-shadow: none;
+                          border-radius: var(--border-radius);
+                        }
+                      weather: weather.dark_sky
+                    - !include ../includes/blank-card.yaml
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: custom:more-info-card
+                      style: |
+                        ha-card {
+                          font-size: 12px;
+                          font-family: Helvetica;
+                          background: none;
+                          box-shadow: none;
+                          border-radius: var(--border-radius);
+                        }
+                      entity: weather.dark_sky
+                    - !include ../includes/blank-card.yaml
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### < Map'
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: iframe
+                      style: |
+                        ha-card {
+                          border-radius: var(--border-radius);
+                          overflow: hidden;
+                          box-shadow: none;
+                        }
+                      aspect_ratio: 155%
+                      url: https://embed.windy.com/embed2.html?lat=20.828&lon=106.660&zoom=11&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=20.828&detailLon=106.660&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+                    - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+#Maps Popup card
+  input_boolean.maps:
+    title: Maps
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: map
+          aspect_ratio: 1.78
+          default_zoom: 28
+          dark_mode: true
+          entities:
+            - person.trinh_tien_thanh
+            - person.anh
+            - device_tracker.trinhs_ipad
+            - zone.home
+            - zone.vosco
+            - zone.kien_long_bank
+            - zone.hometown
+            - zone.anhs_hometown
+            - zone.vism
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+#Themes Popup card
+  input_boolean.themes:
+    title: Themes Select
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Themes (Global)'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: markdown
+              style: |
+                ha-card {
+                  background: rgba(0, 0, 0, 0.5);
+                  border-radius: var(--border-radius);
+                  font-size: 13px;
+                  font-family: Helvetica;
+                  color: white;
+                }
+              content: '<ha-icon icon="mdi:alert"></ha-icon> Warning! Themes that are selected through this menu are set globally for ALL users! If you wish to set a personal theme please use the theme selector in the sidepanel (at the bottom left click on your name and select a theme from there). Selecting any other theme than Automatic will disable the automatic day/night mode!'
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: entities
+              style: |
+                ha-card {
+                  background: var(--homekit-card-off);
+                  border-radius: var(--border-radius);
+                  font-size: 13px;
+                  font-family: Helvetica;
+                  color: var(--name-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  --primary-text-color: var(--name-color-off);
+                }
+              entities:
+                - input_select.theme_selector
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+#Rice Cooker Popup card
+  input_boolean.rice_cooker:
+    title: Xiaomi Rice Cooker
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '#### Select Mode'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Rice
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Rice'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Rice"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Quick Rice
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Quick Rice'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Quick Rice"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Porridge
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Porridge'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Porridge"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Warm Up
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Warm Up Rice'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Warm Up Rice"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - !include ../includes/blank-card.yaml
+
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Cake
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Cake'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Cake"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Yoghurt
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Yoghurt'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Yoghurt"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Sweet Rice
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Sweet Rice'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Sweet Rice"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - type: "custom:button-card"
+            entity: sensor.rice_cooker_current_menu
+            color: "rgb(255, 228, 181, 0.8)"
+            color_type: card
+            show_name: true
+            show_icon: false
+            name: Steaming
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.rice_cooker_menu
+                option: 'Steaming'
+            hold_action:
+              action: none
+            styles:
+              name:
+                - color: "#fffaad"
+                - font-size: 14px
+              card:
+                - color: "#fffaad"
+                - aspect_ratio: 2/1
+                - justify-self-name: center
+                - padding-left-name: 0px
+                - margin-right: 0px
+                - border-radius: 8px
+                - height: 50px
+                - font-weight: bold
+            state:
+              - value: "Steaming"
+                styles:
+                  card:
+                    - color: "rgb(255, 228, 181, 0.8)"
+                  icon:
+                    - color: "#800000"
+                  name:
+                    - color: "#800000"
+                  label:
+                    - color: "#800000"
+              - operator: default
+                color: "rgb(192, 192, 192, 0.2)"
+          - !include ../includes/blank-card.yaml
+
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '#### Control'
+
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:decluttering-card'
+            template: navigation_button
+            variables:
+              - entity: input_select.rice_cooker_menu
+              - show_name: false
+              - icon: format-list-checkbox
+              - show_state: true
+              - size: 40%
+              - aspect_ratio: 1/1
+              - border-radius: 12px
+              - show_label: false
+              - show_state: false
+              - justify-self-name: center
+              - padding-left-name: 0px
+              - color: '#ffffff'
+              - margin-right: 0px
+              - opacity: 0.8
+              - off_name_color: var(--name-color-off)
+              - tap_action:
+                  action: more-info
+              - hold_action:
+                  action: more-info
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:decluttering-card'
+            template: navigation_button
+            variables:
+              - entity: input_boolean.rice_cooker
+              - name: Power On
+              - icon: power
+              - size: 40%
+              - aspect_ratio: 1/1
+              - border-radius: 12px
+              - show_label: false
+              - show_state: false
+              - justify-self-name: center
+              - padding-left-name: 0px
+              - color: 'red'
+              - margin-right: 0px
+              - opacity: 0.8
+              - off_name_color: var(--name-color-off)
+              - tap_action:
+                  action: call-service
+                  service: input_boolean.turn_on
+                  service_data:
+                    entity_id: input_boolean.rice_cooker
+                  haptic: light
+              - hold_action:
+                  action: more-info
+                  haptic: heavy
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:decluttering-card'
+            template: navigation_button
+            variables:
+              - entity: sensor.rice_cooker_current_menu
+              - name: Stop
+              - icon: stop-circle-outline
+              - size: 40%
+              - aspect_ratio: 1/1
+              - border-radius: 12px
+              - show_label: false
+              - show_state: false
+              - justify-self-name: center
+              - padding-left-name: 0px
+              - color: 'red'
+              - margin-right: 0px
+              - opacity: 0.8
+              - off_name_color: var(--name-color-off)
+              - tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.cooker_stop
+              - hold_action:
+                  action: none
+          - !include ../includes/blank-card.yaml
+
+
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '#### Status'
+
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: navigation_button
+            variables:
+              - entity: sensor.rice_cooker_current_mode
+              - name: Mode
+              - icon: xbox-controller-menu
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - hold_action:
+                  action: more-info
+                  haptic: light
+          - type: custom:decluttering-card
+            template: navigation_button
+            variables:
+              - entity: sensor.rice_cooker_current_stage_name
+              - name: Stage
+              - icon: step-forward-2
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - hold_action:
+                  action: more-info
+                  haptic: light
+          - type: custom:decluttering-card
+            template: navigation_button
+            variables:
+              - entity: sensor.xiaomi_cooker_duration
+              - name: Duration
+              - icon: timer
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - hold_action:
+                  action: more-info
+                  haptic: light
+          - type: custom:decluttering-card
+            template: navigation_button
+            variables:
+              - entity: sensor.xiaomi_cooker_remaining
+              - name: Remaining
+              - icon: timelapse
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - hold_action:
+                  action: more-info
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: mini-graph
+            variables:
+              - entities:
+                  - sensor.xiaomi_cooker_temperature
+              - name: Temperature
+              - line_color: '#1427ff'
+              - font_size: 64
+              - decimals: 1
+              - graph: line # Changed/Added in 0.12.3
+              - extrema: true
+          - !include ../includes/blank-card.yaml
+#Lights Popup card
+  input_boolean.lights:
+    title: Lights
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+        type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header
+                variables:
+                  - content: '### Living Room Lights'
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.living_room_ceiling_light
+                  - name: Ceiling Light
+                  - icon: ceiling-light
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.living_room_wall_light_1
+                  - name: Wall Light 1
+                  - icon: wall-sconce-flat
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.living_room_led_light
+                  - name: Led Light
+                  - icon: led-strip
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: light.desk_lamp
+                  - name: Desk Lamp
+                  - icon: mdi:desk-lamp
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: light.gateway_light_04cf8c91346e
+                  - name: Gateway
+                  - icon: alarm-light-outline
+              - type: custom:button-card
+                color_type: blank-card
+                aspect_ratio: 1/1
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header
+                variables:
+                  - content: '### Bedroom Lights'
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.bedroom_ceiling_light
+                  - name: Ceiling Light
+                  - icon: ceiling-light
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.bedroom_wall_light_1
+                  - name: Wall Light 1
+                  - icon: wall-sconce-flat
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.bedroom_wall_light_2
+                  - name: Wall Light 2
+                  - icon: wall-sconce-flat
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.bedroom_led_light
+                  - name: Led Light
+                  - icon: led-strip
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: light.bedside_lamp
+                  - name: Bedside Lamp
+                  - icon: lamp
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: light.gateway_light_7811dcdefc7f
+                  - name: Gateway
+                  - icon: alarm-light-outline
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header
+                variables:
+                  - content: '### Outside Lights'
+              - !include ../includes/blank-card.yaml
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.gate_light
+                  - name: Gate Light
+                  - icon: octagram-outline
+              - type: custom:decluttering-card
+                template: button
+                variables:
+                  - entity: switch.balcony_light
+                  - name: Balcony Light
+                  - icon: octagram-outline
+              - type: custom:button-card
+                color_type: blank-card
+                aspect_ratio: 1/1
+              - !include ../includes/blank-card.yaml
+          - !include ../includes/blank-card.yaml
+          - !include ../includes/blank-card.yaml
+#Media Popup card
+  input_boolean.media:
+    title: Media
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.tivi
+                - name: TV
+                - label: Living Room
+                - icon: television
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: Soundbar
+                - label: Living Room
+                - icon: speaker
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: script.soundbar_source
+                - name: Source
+                - label: Soundbar Input
+                - icon: login-variant
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_mibox
+                - name: Mibox
+                - label: Android TV
+                - icon: youtube
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.mibox
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_live_tv
+                - name: Viettel TV
+                - label: Live TV
+                - icon: television-box
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.viettel_tv
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: sensor.tv_source_play_station
+                - name: Playstation
+                - label: Game
+                - icon: playstation
+                - show_state: false
+                -  tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.playstation
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.android_tv
+                - name: Android TV
+                - label: Mibox
+                - icon: cast
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.living_room
+                - name: Google Home
+                - label: Living Room
+                - icon: speaker
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.bedroom
+                - name: Google Home
+                - label: Bedroom
+                - icon: speaker
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.mute
+                - name: MUTE
+                - label: Volume Mute
+                - icon: volume-mute
+                - show_state: false
+                - tap_action:
+                    action: toggle
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: DOWN
+                - label: Volume down
+                - icon: volume-minus
+                - show_state: false
+                - tap_action:
+                    action: call-service
+                    service: media_player.volume_down
+                    service_data:
+                      entity_id: media_player.soundbar
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: media_player.soundbar
+                - name: UP
+                - label: Volume up
+                - icon: volume-plus
+                - show_state: false
+                - tap_action:
+                    action: call-service
+                    service: media_player.volume_up
+                    service_data:
+                      entity_id: media_player.soundbar
+                - hold_action:
+                    action: more-info
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+#Security Popup card
+  input_boolean.security:
+    title: Home Security
+    style:
+      color: white
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+      -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+      box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Doors'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.door_window_sensor_158d0001f369e9
+                - name: Gate
+                - icon: door
+                - show_last_changed: true
+                - tap_action: more-info
+                - variable: icon
+                - spin: 'mdi:door-open'
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Motion'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d00023db50c
+                - name: Living Room
+                - icon: motion-sensor
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d000275c945
+                - name: Master Bedroom
+                - icon: motion-sensor
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d0002732c91
+                - name: Second Bedroom
+                - icon: motion-sensor
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d0002760432
+                - name: Kitchen
+                - icon: motion-sensor
+                - show_last_changed: true
+                - tap_action: more-info
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml

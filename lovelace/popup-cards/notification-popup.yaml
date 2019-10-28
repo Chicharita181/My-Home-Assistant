@@ -1,0 +1,478 @@
+# Notifications
+input_boolean.notification_alarm:
+  title: Alarm
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Actions'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Disable
+              - icon: mdi:shield-check # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: automation.trigger
+                  service_data:
+                    entity_id: automation.alarm_disarm_anh_away
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Enable Away
+              - icon: mdi:alert
+              - tap_action: # Changed/Added in 0.13.0
+                  action: call-service
+                  service: automation.trigger
+                  service_data:
+                    entity_id: automation.alarm_activation_alert
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Enable Night
+              - icon: mdi:weather-night
+              - tap_action:   # Changed/Added in 0.13.0
+                  action: call-service
+                  service: alarm_control_panel.alarm_arm_night
+                  service_data:
+                    entity_id: alarm_control_panel.home_alarm
+                    code: !secret alarm_control
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+# alarm control panel
+alarm_control_panel.home_alarm:
+  title: Alarm
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Actions'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Disable
+              - icon: mdi:shield-check # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: automation.trigger
+                  service_data:
+                    entity_id: automation.alarm_disarm_anh_away
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Enable Away
+              - icon: mdi:alert
+              - tap_action: # Changed/Added in 0.13.0
+                  action: call-service
+                  service: automation.trigger
+                  service_data:
+                    entity_id: automation.alarm_activation_alert
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Alarm Enable Night
+              - icon: mdi:weather-night
+              - tap_action:   # Changed/Added in 0.13.0
+                  action: call-service
+                  service: alarm_control_panel.alarm_arm_night
+                  service_data:
+                    entity_id: alarm_control_panel.home_alarm
+                    code: !secret alarm_control
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+input_boolean.notification_motion_living_room:
+  title: Movement Bedroom
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Actions'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Switch light On
+              - icon: mdi:ceiling-light # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: switch.turn_on
+                  service_data:
+                    entity_id: switch.living_room_ceiling_light
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Switch light Off
+              - icon: mdi:ceiling-light # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.living_room_ceiling_light
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+input_boolean.notification_motion_master_bedroom:
+  title: Movement Master Bedroom
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Actions'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Turn on light
+              - icon: mdi:ceiling-light # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: switch.turn_on
+                  service_data:
+                    entity_id: switch.bedroom_ceiling_light
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:decluttering-card
+            template: notification
+            variables:
+              - name: Turn off light
+              - icon: mdi:ceiling-light # Changed/Added in 0.13.0
+              - tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.bedroom_ceiling_light
+                  haptic: light
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+# Current Lights On # Changed/Added in 0.13.0 THE FOLLOWING CONFIG BELOW IS ALSO FOR THE FRONTPAGE BUTTONS WHEN USING HOLD_ACTION/DEEP_PRESS!!
+input_boolean.notification_current_lights:
+  title: Current Lights ON
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Currently ON'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:auto-entities'
+            card:
+              type: glance
+              columns: 3
+              show_empty: true
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  background: var(--card-color-off);
+                  color: var(--name-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-size: 12px;
+                  font-family: Helvetica;
+                }
+            filter:
+              include:
+                - domain: light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.living_room_ceiling_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.living_room_wall_light_1
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.living_room_led_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.bedroom_ceiling_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.bedroom_wall_light_1
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.bedroom_wall_light_2
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.bedroom_led_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.gate_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.balcony_light
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+# Current Devices On # Changed/Added in 0.13.0
+input_boolean.notification_current_devices:
+  title: Current Devices ON
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Currently ON'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:auto-entities'
+            card:
+              type: glance
+              columns: 3
+              show_empty: true
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  background: var(--card-color-off);
+                  color: var(--name-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-size: 12px;
+                  font-family: Helvetica;
+                }
+            filter:
+              include:
+                - entity_id: switch.mp1_fan
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.mp1_mibox
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.mp1_soundbar
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.mp1_tivi
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: switch.power_strip
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: media_player.tivi
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: media_player.soundbar
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+                - entity_id: input_boolean.rice_cooker
+                  state: 'on'
+                  options:
+                    tap_action:
+                      action: toggle
+
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+# Current Radiator Valves On # Changed/Added in 0.13.0
+input_boolean.notification_current_climates:
+  title: Current Climate Valves ON
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Currently ON'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:auto-entities'
+            card:
+              type: glance
+              columns: 3
+              show_empty: true
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  background: var(--card-color-off);
+                  color: var(--name-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-size: 12px;
+                  font-family: Helvetica;
+                }
+            filter:
+              include:
+                - domain: fan
+                  options:
+                    tap_action:
+                      action: toggle
+                - domain: climate
+                  options:
+                    tap_action:
+                      action: toggle
+              exclude:
+              - state: "off"
+              - state: "unavailable"
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml
+
+# Current Sensors On # Changed/Added in 0.13.0
+input_boolean.notification_current_sensors:
+  title: Current Sensors ON
+  style:
+    color: white
+    border-radius: var(--border-radius)
+    background: var(--background-image)
+    -webkit-box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+    box-shadow: 0px 0px 9px 3px var(--primary-text-color)
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Currently ON'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: 'custom:auto-entities'
+            card:
+              type: glance
+              columns: 3
+              show_empty: true
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  background: var(--card-color-off);
+                  color: var(--name-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-size: 12px;
+                  font-family: Helvetica;
+                }
+            filter:
+              include:
+                - domain: binary_sensor
+                  state: 'on'
+              exclude:
+                - entity_id: binary_sensor.updater
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

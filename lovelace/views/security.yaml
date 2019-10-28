@@ -1,0 +1,78 @@
+- title: Secutity
+  icon: mdi:cctv
+  path: security
+  badges:
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Alarm
+            - icon1: shield-home
+            - path1: alarm
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Doors'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.door_window_sensor_158d0001f369e9
+                - name: Gate
+                - show_last_changed: true
+                - tap_action: more-info
+                - variable: icon
+                - spin: 'mdi:door-open'
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '### Motion'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d00023db50c
+                - name: Living Room
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d000275c945
+                - name: Master Bedroom
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d0002732c91
+                - name: Second Bedroom
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: binary_sensor.motion_sensor_158d0002760432
+                - name: Kitchen
+                - show_last_changed: true
+                - tap_action: more-info
+            - !include ../includes/blank-card.yaml

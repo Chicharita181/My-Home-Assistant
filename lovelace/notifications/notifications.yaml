@@ -1,0 +1,320 @@
+# This is the notifications page, you can edit notifications that are
+# shown on the frontend in this file. This works with conditional cards.
+# What this means is that the conditions need to be be met before these
+# cards are shown. When there are more entities/states in a conditional
+# card it will always be an 'AND' condition, it will never be an 'OR'
+# condition. Edit the conditions, entities and notification content to
+# your own likings.
+
+#### #### #### #### #### #### #### #### #### #### #### #### #### #### #
+
+# Card Config
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - content: '##### Notifications and Events'
+
+  # All Clear
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d00023db50c
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d0002732c91
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d000275c945
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d0002760432
+        state: "off"
+      - entity: binary_sensor.door_window_sensor_158d0001f369e9
+        state: "off"
+      - entity: alarm_control_panel.home_alarm
+        state: disarmed
+      - entity: group.device_status
+        state: home
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_everything_quietly
+            - icon: mdi:check-box-outline # Changed/Added in 0.13.0
+            - name: Everything is quiet, there are no notifications
+            - card_color: 'rgba(157, 0, 255, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Gate
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0001f369e9
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_gate
+            - icon: mdi:door # Changed/Added in 0.13.0
+            - name: Gate is opening!
+            - card_color: 'rgba(193, 2, 214, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Alarm Triggered
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: "triggered"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_alarm
+            - icon: mdi:alert # Changed/Added in 0.13.0
+            - name: ATTENTION! The alarm has sounded, ATTENTION!
+            - card_color: 'rgba(255, 0, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Alarm Armed
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state_not: disarmed
+      - entity: alarm_control_panel.home_alarm
+        state_not: pending
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_alarm
+            - icon: mdi:alert # Changed/Added in 0.13.0
+            - name: PAY ATTENTION! The alarm is on!
+            - card_color: 'rgba(255, 0, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Alarm Disarmed Not Home
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: disarmed
+      - entity: group.device_status
+        state_not: home
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_alarm
+            - icon: mdi:alert # Changed/Added in 0.13.0
+            - name: No one is home anymore, switch on the alarm!
+            - card_color: 'rgba(255, 110, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Alarm Pending
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: pending
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_alarm
+            - icon: mdi:clock-alert-outline # Changed/Added in 0.13.0
+            - name: The alarm is switched on, leave the home!
+            - card_color: 'rgba(255, 90, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Motion Living Room
+  - type: conditional
+    conditions:
+      - entity:  binary_sensor.motion_sensor_158d00023db50c
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_motion_living_room
+            - icon: mdi:motion-sensor # Changed/Added in 0.13.0
+            - name: There is movement in the Living room
+            - card_color: 'rgba(161, 255, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Motion Master Bedroom
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d000275c945
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_motion_master_bedroom
+            - icon: mdi:motion-sensor # Changed/Added in 0.13.0
+            - name: There is movement in the Master Bedroom
+            - card_color: 'rgba(161, 255, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Motion Second Bedroom
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d0002732c91
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_motion_second_bedroom
+            - icon: mdi:motion-sensor # Changed/Added in 0.13.0
+            - name: There is movement in the Second Bedroom
+            - card_color: 'rgba(161, 255, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Motion Kitchen
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d0002760432
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_motion_kitchen
+            - icon: mdi:motion-sensor # Changed/Added in 0.13.0
+            - name: There is movement in the Kitchen
+            - card_color: 'rgba(161, 255, 0, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+
+  # Rice Cooker Notification (Cooking)
+  - type: conditional
+    conditions:
+      - entity: sensor.rice_cooker_current_mode
+        state: 'Cooking'
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_rice_cooker
+            - icon: mdi:stove # Changed/Added in 0.13.0
+            - name: "[[[ if (states['sensor.rice_cooker_current_stage_name'].state == 'unknown stage') return `Rice Cooker is Standby Mode`; else return `Rice Cooker is Cooking. Current Stage is ${states['sensor.rice_cooker_current_stage_name'].state} `  ]]]"
+            - card_color: 'rgba(56, 43, 230, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Rice Cooker Notification (keep warm)
+  - type: conditional
+    conditions:
+      - entity: sensor.rice_cooker_current_mode
+        state: 'Keep warm'
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_rice_cooker
+            - icon: mdi:stove # Changed/Added in 0.13.0
+            - name: Rice Cooker is Keep warm
+            - card_color: 'rgba(56, 43, 230, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+
+# Changed/Added in 0.13.0 below # Notifications below only show when the Home Alarm is set to anything other than "disarmed"
+# These notifications do not serve any purpose when the alarm is disarmed as these will not be shown. Why? Well because if the
+# alarm is disarmed then the amount of lights/devices that are currently on are displayed in the buttons in the form of a
+# notification badge, this makes a second notification in the notifications panel unnecessary and so these will only show when
+# the alarm is set to anything other than "disarmed".
+
+  # Current Lights
+  - type: conditional
+    conditions:
+      - entity: sensor.current_lights_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_lights
+            - icon: mdi:lightbulb # Changed/Added in 0.13.0
+            - name: "[[[ if (states['sensor.current_lights_on'].state < 2) return `1 lamp is switched on`; else return `There are ${states['sensor.current_lights_on'].state} lights switched on`  ]]]"
+            - card_color: 'rgba(79, 255, 161, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Current Devices
+  - type: conditional
+    conditions:
+      - entity: sensor.current_devices_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_devices
+            - icon: mdi:power-plug # Changed/Added in 0.13.0
+            - name: "[[[ if (states['sensor.current_devices_on'].state < 2) return `1 device is switched on`; else return `There are ${states['sensor.current_devices_on'].state} devices switched on` ]]]"
+            - card_color: 'rgba(18, 180, 255, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Current Climate Valves
+  - type: conditional
+    conditions:
+      - entity: sensor.current_climate_valves_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_climates
+            - icon: mdi:thermostat # Changed/Added in 0.13.0
+            - name: "[[[ if (states['sensor.current_climate_valves_on'].state < 2) return `1 Climate is switched on`; else return `These are ${states['sensor.current_climate_valves_on'].state} Climates switched on`  ]]]"
+            - card_color: 'rgba(255, 0, 76, 0.5)'
+        - !include ../includes/blank-card.yaml
+# Changed/Added in 0.13.0 above
+
+  - !include ../includes/bottom-card.yaml

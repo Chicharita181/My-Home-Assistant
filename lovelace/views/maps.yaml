@@ -1,0 +1,54 @@
+- title: Location
+  path: location
+  icon: mdi:google-maps
+  badges:
+    #- person.trinh_tien_thanh
+    #- person.anh
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Weather
+            - icon1: weather-cloudy
+            - path1: weather
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Location'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Map'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: map
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: black;
+                  color: black;
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-family: Helvetica;
+                  font-size: 12px;
+                  opacity: 0.8;
+                  overflow: hidden;
+                }
+              aspect_ratio: 4x6
+              default_zoom: 15
+              dark_mode: false
+              entities:
+                - person.trinh_tien_thanh
+                - person.ngo_ngoc_anh
+                - device_tracker.trinhs_ipad
+                - zone.home
+                - zone.vosco
+                - zone.kien_long_bank
+                - zone.hometown
+                - zone.anhs_hometown
+                - zone.vism
+            - !include ../includes/blank-card.yaml

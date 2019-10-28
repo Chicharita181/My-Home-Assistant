@@ -1,0 +1,219 @@
+# These are the variables you can use in your decluttering
+# card. Add one or more variables in your decluttering-card.
+# The variables you see below are the default ones.
+#
+# A standard decluttering-card config would look like:
+# - type: custom:decluttering-card
+#   template: this_templates_name
+#   variables:
+#     - entity: switch.test
+#     - name: test
+#
+# All the variables you can use are within the default config
+# below. The variables you can use are the first word after each
+# dash -.
+#
+# If you omit adding variables to your decluttering-card
+# it will use defaults instead, which are defined below as well.
+# You can change the default config below. If you only enter a
+# few of the variables it will only use defaults for undefined
+# variables.
+
+# Default Config
+default:
+  # Button Options
+  - lock: false
+  - aspect_ratio: 2/1
+  - opacity: 0.5
+  - opacity_on: 1.0
+  - height: 50px
+
+  # Theme Options (if you do not wish to use my provided theme-selector please change the following config to the config that is commented!)
+  - border-radius: "[[[ return states['input_select.border_radius'].state ]]]" # Changed/Added in 0.13.0
+  - ha-card-background: var(--card-color-off) # Changed/Added in 0.13.0
+  - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]" # Changed/Added in 0.13.0
+
+# - border-radius: var(--border-radius)
+# - ha-card-background: var(--card-color-off)
+# - box-shadow: none
+
+  # Name
+  - name: # Changed/Added in 0.13.2 (removed config so it can use the default entity name if no name is set in decluttering-cards)
+
+  # Label
+  - label: '&nbsp;'
+
+  # Icon Options
+  - color: auto
+  - size: 30%
+  - icon: # Changed/Added in 0.13.2 (removed config so it can use the default entity icon if no icon is set in decluttering-cards)
+
+  # Show Options
+  - show_name: true
+  - show_state: false
+  - show_label: false
+  - show_icon: false
+  - show_last_changed: false
+
+  # Tap and Hold Actions
+  - tap_action:
+      action: toggle
+      haptic: light
+  - hold_action:
+      action: more-info
+      haptic: heavy
+
+  # Button 'Off' Options
+  - off_icon_color: var(--icon-color-off) # Changed/Added in 0.13.0
+  - off_name_color: var(--name-color-off) # Changed/Added in 0.13.0
+  - off_state_color: var(--state-color-off) # Changed/Added in 0.13.0
+  - off_label_color: var(--label-color-off) # Changed/Added in 0.13.0
+
+  # Button 'On' Options
+  - on_name_color: var(--name-color-on) # Changed/Added in 0.13.0
+  - on_state_color: var(--state-color-on) # Changed/Added in 0.13.0
+  - on_label_color: var(--label-color-on) # Changed/Added in 0.13.0
+  - on_card_color: var(--card-color-on) # Changed/Added in 0.13.0
+
+  # Name and Label Options
+  - label_font_size: 11px
+  - label_font_weight: normal
+  - justify-self-name: center
+
+  # Grid
+  - grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+
+  # Custom Fields # Changed/Added in 0.13.0 (This should be left empty!)
+  - custom_fields:
+  - notification:
+#### #### #### #### #### #### #### #### #### #### #### #
+
+# Card Config
+# Do NOT change this unless you know what you are doing!
+card:
+  type: custom:button-card
+  name: '[[name]]'
+  deep_press: true
+  icon: '[[icon]]' # Changed/Added in 0.13.0
+  size: '[[size]]'
+  color: '[[color]]'
+  lock: '[[lock]]'
+  aspect_ratio: '[[aspect_ratio]]'
+  entity: '[[entity]]'
+  label: '[[label]]'
+  height: '[[height]]'
+  show_name: '[[show_name]]'
+  show_icon: '[[show_icon]]'
+  show_state: '[[show_state]]'
+  show_label: '[[show_label]]'
+  show_last_changed: '[[show_last_changed]]'
+  tap_action: '[[tap_action]]'
+  hold_action: '[[hold_action]]'
+  styles:
+    card:
+      - border-radius: '[[border-radius]]'
+      - --ha-card-background: '[[ha-card-background]]'
+      - box-shadow: '[[box-shadow]]' # Changed/Added in 0.13.0
+      - justify-self-name: center
+      - padding-left-name: 0px
+      - margin-right: 0px
+    label:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: center
+      - color: var(--label-color-off) # Changed/Added in 0.13.0
+    state:
+      - font-size: 14px
+      - font-family: Helvetica
+      - justify-self: center
+      - text-transform: capitalize
+      - color: var(--state-color-off) # Changed/Added in 0.13.0
+    name:
+      - font-weight: bold
+      - font-family: Helvetica
+      - font-size: 14px
+  state:
+    - value: '[[value]]'
+      '[[variable]]': '[[spin]]'
+      styles:
+        card:
+          - --ha-card-background: '[[on_card_color]]'
+          - opacity: '[[opacity_on]]'
+          - box-shadow: none # Changed/Added 0.13.0
+          - border-style: solid
+          - border-width: 1px
+          - border-color: black
+        name:
+          - color: '[[on_name_color]]'
+        state:
+          - color: '[[on_state_color]]'
+        lock:
+          - color: var(--lock-color-on) # Changed/Added in 0.13.0
+        label:
+          - color: '[[on_label_color]]'
+    - value: 'on'
+      '[[variable]]': '[[spin]]'
+      styles:
+        card:
+          - --ha-card-background: '[[on_card_color]]'
+          - opacity: '[[opacity_on]]'
+          - box-shadow: none # Changed/Added 0.13.0
+          - border-style: solid
+          - border-width: 1px
+          - border-color: black
+        name:
+          - color: '[[on_name_color]]'
+        state:
+          - color: '[[on_state_color]]'
+        lock:
+          - color: var(--lock-color-on) # Changed/Added in 0.13.0
+        label:
+          - color: '[[on_label_color]]'
+    - operator: 'default'
+      styles:
+        card:
+          - opacity: '[[opacity]]'
+        icon:
+          - color: '[[off_icon_color]]'
+        name:
+          - color: '[[off_name_color]]'
+        state:
+          - color: '[[off_state_color]]'
+        label:
+          - color: '[[off_label_color]]'
+          - font-size: '[[label_font_size]]'
+          - font-weight: '[[label_font_weight]]'
+        lock:
+          - color: --var(--lock-color-off) # Changed/Added in 0.13.0
+    - value: "cool"
+      '[[variable]]': '[[spin]]'
+      styles:
+        card:
+          - --ha-card-background: 'rgb(127, 255, 212, 0.5)'
+          - opacity: '[[opacity_on]]'
+        name:
+          - color: '[[on_name_color]]'
+        state:
+          - color: '[[on_state_color]]'
+        lock:
+          - color: var(--lock-color-on)
+        label:
+          - color: '[[on_label_color]]'
+    - value: "heat"
+      '[[variable]]': '[[spin]]'
+      styles:
+        card:
+          - --ha-card-background: 'rgb(217, 50, 50, 0.4)'
+          - opacity: '[[opacity_on]]'
+        name:
+          - color: '[[on_name_color]]'
+        state:
+          - color: '[[on_state_color]]'
+        lock:
+          - color: var(--lock-color-on)
+        label:
+          - color: '[[on_label_color]]'

@@ -1,0 +1,321 @@
+- title: Trinh's Home
+  icon: mdi:home-outline
+  path: home
+  popup_cards:
+    !include ../popup-cards/notification-popup.yaml
+  badges:
+
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Person Info'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            # Left Photo (condition home)
+            - type: conditional
+              conditions:
+                - entity: person.trinh_tien_thanh
+                  state: "home"
+              card:
+                type: custom:decluttering-card
+                template: person
+                variables:
+                  - person: person.trinh_tien_thanh # Changed/Added in 0.13.0
+                  - image: '/local/images/Pics/Thanh.jpg'
+                  - direction: right
+                  - battery: sensor.xiaomi_mi_9_current_battery
+                  - charging: sensor.xiaomi_mi_9_charging
+                  - speed: sensor.trinh_s_speed
+                  - travel_time: sensor.thanh_s_home_time # Changed/Added in 0.13.0
+                  - icon: mdi:home # Changed/Added in 0.13.0
+            # Left Photo (condition not_home)
+            - type: conditional
+              conditions:
+                - entity: person.trinh_tien_thanh
+                  state_not: "home"
+              card:
+                type: custom:decluttering-card
+                template: person
+                variables:
+                  - person: person.trinh_tien_thanh # Changed/Added in 0.13.0
+                  - image: '/local/images/Pics/Thanh.jpg'
+                  - direction: right
+                  - battery: sensor.xiaomi_mi_9_current_battery
+                  - charging: sensor.xiaomi_mi_9_charging
+                  - speed: sensor.trinh_s_speed
+                  - travel_time: sensor.thanh_s_work_time # Changed/Added in 0.13.0
+                  - icon: mdi:office-building # Changed/Added in 0.13.0
+
+            # Right Photo (condition home)
+            - type: conditional
+              conditions:
+                - entity: person.ngo_ngoc_anh
+                  state: "home"
+              card:
+                type: custom:decluttering-card
+                template: person
+                variables:
+                  - person: person.ngo_ngoc_anh # Changed/Added in 0.13.0
+                  - image: '/local/images/Pics/Anh.jpg'
+                  - direction: left
+                  - battery: sensor.iphone_7_plus_current_battery
+                  - charging: sensor.iphone_7_plus_charging
+                  - speed: sensor.anh_s_speed
+                  - travel_time: sensor.anh_s_home_time # Changed/Added in 0.13.0
+                  - icon: mdi:home # Changed/Added in 0.13.0
+
+            # Right Photo (condition not_home)
+            - type: conditional
+              conditions:
+                - entity: person.ngo_ngoc_anh
+                  state_not: "home"
+              card:
+                type: custom:decluttering-card
+                template: person
+                variables:
+                  - person: person.ngo_ngoc_anh # Changed/Added in 0.13.0
+                  - image: '/local/images/Pics/Anh.jpg'
+                  - direction: left
+                  - battery: sensor.iphone_7_plus_current_battery
+                  - charging: sensor.iphone_7_plus_charging
+                  - speed: sensor.anh_s_speed
+                  - travel_time: sensor.anh_s_work_time # Changed/Added in 0.13.0
+                  - icon: mdi:office-building # Changed/Added in 0.13.0
+            - !include ../includes/blank-card.yaml
+
+        # weather
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Weather'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:simple-weather-card
+              entity: weather.dark_sky
+              name: "Home"
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  background: var(--card-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  opacity: 0.8;
+                }
+              backdrop: false
+            - !include ../includes/blank-card.yaml
+
+        # Menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Main Menu'
+        # First Row
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            # Button 1
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - name: Climate
+                - label: Control
+                - icon: mdi:thermostat # Changed/Added in 0.13.0
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/climate
+                    haptic: light
+                - hold_action:
+                    action: more-info # Changed/Added in 0.13.0
+                    haptic: light
+                - entity: input_boolean.notification_current_climates # Changed/Added in 0.13.0
+                - margin-right: 40px
+                - opacity: 0.8
+                - notification: "[[[ if (states['sensor.current_climate_valves_on'].state > 0) return `${states['sensor.current_climate_valves_on'].state}`; else return '&nbsp' ]]]" # Changed/Added in 0.13.0
+                - custom_fields:  # Changed/Added in 0.13.0 below
+                    notification:
+                      - background-color: "[[[ if (states['sensor.current_climate_valves_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                      - color: var(--notification-badge-color)
+                      - border-radius: 50%
+                      - overflow: visible
+                      - position: absolute
+                      - right: 7%
+                      - top: 7%
+                      - height: 22px
+                      - width: 22px
+                      - font-size: 11px
+                      - line-height: 20px
+            # Button 2
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - name: Light
+                - label: Control
+                - icon: mdi:floor-lamp # Changed/Added in 0.13.0
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/lights
+                    haptic: light
+                - hold_action:
+                    action: more-info # Changed/Added in 0.13.0
+                    haptic: light
+                - entity: input_boolean.notification_current_lights # Changed/Added in 0.13.0
+                - margin-right: 40px
+                - opacity: 0.8
+                - notification: "[[[ if (states['sensor.current_lights_on'].state > 0) return `${states['sensor.current_lights_on'].state}`; else return '&nbsp' ]]]" # Changed/Added in 0.13.0
+                - custom_fields:  # Changed/Added in 0.13.0 below
+                    notification:
+                      - background-color: "[[[ if (states['sensor.current_lights_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                      - color: var(--notification-badge-color)
+                      - border-radius: 50%
+                      - overflow: visible
+                      - position: absolute
+                      - right: 7%
+                      - top: 7%
+                      - height: 22px
+                      - width: 22px
+                      - font-size: 11px
+                      - line-height: 20px
+            # Button 3
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - name: Device
+                - label: Control
+                - icon: mdi:power-plug # Changed/Added in 0.13.0
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/devices
+                    haptic: light
+                - hold_action:
+                    action: more-info # Changed/Added in 0.13.0
+                    haptic: light
+                - entity: input_boolean.notification_current_devices # Changed/Added in 0.13.0
+                - margin-right: 40px
+                - opacity: 0.8
+                - notification: "[[[ if (states['sensor.current_devices_on'].state > 0) return `${states['sensor.current_devices_on'].state}`; else return '&nbsp' ]]]" # Changed/Added in 0.13.0
+                - custom_fields:  # Changed/Added in 0.13.0 below
+                    notification:
+                      - background-color: "[[[ if (states['sensor.current_devices_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                      - color: var(--notification-badge-color)
+                      - border-radius: 50%
+                      - overflow: visible
+                      - position: absolute
+                      - right: 7%
+                      - top: 7%
+                      - height: 22px
+                      - width: 22px
+                      - font-size: 11px
+                      - line-height: 20px
+            # Button 4
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - name: Security
+                - label: Panel
+                - icon: mdi:cctv # Changed/Added in 0.13.0
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/security
+                    haptic: light
+                - hold_action:
+                    action: more-info # Changed/Added in 0.13.0
+                    haptic: light
+                - entity: input_boolean.notification_current_sensors # Changed/Added in 0.13.0
+                - margin-right: 40px
+                - opacity: 0.8
+                - notification: "[[[ if (states['sensor.current_sensors_on'].state > 0) return `${states['sensor.current_sensors_on'].state}`; else return '&nbsp' ]]]" # Changed/Added in 0.13.0
+                - custom_fields: # Changed/Added in 0.13.0 below
+                    notification:
+                      - background-color: "[[[ if (states['sensor.current_sensors_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                      - color: var(--notification-badge-color)
+                      - border-radius: 50%
+                      - overflow: visible
+                      - position: absolute
+                      - right: 7%
+                      - top: 7%
+                      - height: 22px
+                      - width: 22px
+                      - font-size: 11px
+                      - line-height: 20px
+            - !include ../includes/blank-card.yaml
+        # Second Row
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            # Button 1
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: alarm_control_panel.home_alarm
+                - name: Home Alarm
+                - label: Control
+                - icon: mdi:shield-home
+                - opacity: 0.8
+                - show_state: true
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/alarm
+                    haptic: light
+            # Button 2
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: input_boolean.rice_cooker
+                - name: Rice Cooker
+                - label: Xiaomi Rice Cooker
+                - icon: mdi:stove
+                - show_state: false
+                - margin-right: 40px
+                - opacity: 0.8
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/rice_cooker
+                    haptic: light
+            # Button 3
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: input_boolean.dummy1
+                - name: Scenes
+                - label: Presets
+                - icon: mdi:arrange-send-backward
+                - opacity: 0.8
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/scenes
+                    haptic: light
+                - hold_action:
+                    action: navigate
+                    navigation_path: /lovelace/scenes
+                    haptic: light
+            # Button 4
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - name: Menu
+                - label: All Options
+                - icon: mdi:menu # Changed/Added in 0.13.0
+                - show_state: false
+                - tap_action:
+                    action: navigate
+                    navigation_path: /lovelace/menu
+                    haptic: light
+                - hold_action:
+                    action: navigate
+                    navigation_path: /lovelace/menu
+                    haptic: light
+                - entity: input_boolean.dummy1
+                - margin-right: 40px
+                - opacity: 0.8
+            - !include ../includes/blank-card.yaml
+
+        - !include ../notifications/notifications.yaml

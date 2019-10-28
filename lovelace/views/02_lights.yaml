@@ -1,0 +1,177 @@
+- title: Lights
+  icon: mdi:ceiling-light
+  path: lights
+  popup_cards:
+    !include ../popup-cards/light-popup.yaml
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Currently On
+            - icon1: lightbulb-on-outline
+            - path1: currently-on
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header
+              variables:
+                - content: '### Living Room Lights'
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.living_room_ceiling_light
+                - name: Ceiling Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.living_room_wall_light_1
+                - name: Wall Light 1
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.living_room_led_light
+                - name: Led Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.desk_lamp
+                - name: Desk Lamp
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.gateway_light_04cf8c91346e
+                - name: Gateway
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header
+              variables:
+                - content: '### Bedroom Lights'
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.bedroom_ceiling_light
+                - name: Ceiling Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.bedroom_wall_light_1
+                - name: Wall Light 1
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.bedroom_wall_light_2
+                - name: Wall Light 2
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.bedroom_led_light
+                - name: Led Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.bedside_lamp
+                - name: Bedside Lamp
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.gateway_light_7811dcdefc7f
+                - name: Gateway
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+
+  ########################################################################
+  ######################   OUTSIDE LIGHTS   ##############################
+  ########################################################################
+        - type: horizontal-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header
+              variables:
+                - content: '### Outside Lights'
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.gate_light
+                - name: Gate Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: switch.balcony_light
+                - name: Balcony Light
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
